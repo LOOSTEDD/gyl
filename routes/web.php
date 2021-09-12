@@ -21,3 +21,7 @@ Route::get('/index', function () {
     return 'bienvenido';
     //return view('index');
 });
+
+Route::get('/hola', function (){
+    return 'hola';
+});
