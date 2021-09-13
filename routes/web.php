@@ -24,4 +24,3 @@ Route::get('/index', function () {
 Route::get('/trabajo1', function (){
     return view('trabajo1');
 });
- 
