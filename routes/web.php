@@ -18,10 +18,10 @@ Route::get('/', function () {
 });
 
 Route::get('/index', function () {
-    return 'bienvenido';
-    //return view('index');
+    return view('index');
 });
 
-Route::get('/hola', function (){
-    return 'hola';
+Route::get('/trabajo1', function (){
+    return view('trabajo1');
 });
+ 
