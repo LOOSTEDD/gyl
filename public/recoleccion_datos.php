@@ -4,5 +4,6 @@
     $vertices=$_POST['vertices'];
     echo $aristas;
     echo $vertices;
+
 ?>
     
