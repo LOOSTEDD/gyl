@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('Lamama');
+    return view('A');
 });
 
 Route::get('/index', function () {
