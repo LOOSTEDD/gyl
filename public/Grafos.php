@@ -81,6 +81,31 @@
         }
         echo('<br/>');
     }
-    matriz_caminos(3,[1,1,2,0,0],[0,2,1,1,1],[true,false,true,false,false]);
+    matriz_caminos(4,[1,0,0,2],[0,1,1,3],true);
     matriz_valoresA(3,[1,1,2,0,0],[0,2,1,1,1],[4,5,1,6,8]);
+    
+    function matriz_conexa($matriz,$cantidad)
+    {
+        $conexion=array();
+        $conexion_aux=array();
+        for($j=1;$j<$cantidad;$j++)
+        {
+            if($matriz[0][$j]!=0 || $matriz[$j][0]!=0)
+            {
+                array_push($conexion,$j);
+            }
+        }
+
+        if(count($conexion)==count($cantidad)-1)
+        {
+            print("Es conexo");
+        }
+        else
+        {
+            for($i=0;$i<count($conexion);$i++)
+            {
+                //escribir algo piensa pablo piensa
+            }
+        }
+    }        
 ?>
