@@ -1,3 +1,17 @@
+<?php
+   
+    $vertice1=$_POST['vertice1'];
+    $vertice2=$_POST['vertice2'];
+	$valor=$_POST['varista'];
+    $guardar=fopen('matriz.txt','a+');
+    fwrite($guardar,$vertice1);
+    fwrite($guardar,',');
+	fwrite($guardar,$vertice2);
+	fwrite($guardar,'  ');
+	fwrite($guardar,$valor);
+	fwrite($guardar,"\n");
+    fclose($guardar);
+?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -102,7 +116,7 @@
 						<ul>
 							<li><a href="../public/views/index.html">Inicio</a></li>
 							<li class="has-dropdown">
-								<a href="blog.html">Trabajo 1</a>
+								<a href="blog.html">Trabajo 1</a> 
 								<ul class="dropdown">
 									<li><a href="#">Trabajo</a></li>
 									<li><a href="#">Listo</a></li>
@@ -163,18 +177,21 @@
 			<div class="row animate-box">	
 				<div class="col-md-6 col-md-offset-3 text-center heading-section">
 					<h3>Demostracion</h3>
-					<p align = "justify">Ingrese sus datos</p>
-					<form action="primera_recoleccion.php" mclass="#fh5co-started" method="POST">
-						<p>	Numero de nodos: <input type="number" min="0" name="nodos"> </p>
-						<p align = "text-center">¿Es direcional?:<input type="checkbox" name="direccional"></p>
+					<p align = "justify">Ingrese sus valores:</p>
+					<form action="recoleccion_de_datos.php" mclass="#fh5co-started" method="POST">
+					<p>	
+						Vertices: <input type="number" min="0" name="vertice1"> <input type="number" min="0" name="vertice2">
+						<p align = "text-center">Valor arista:<input type="number" min="0" name="varista"></p>
 						<input type="submit" value="Ingresar">
+					</p>
 					</form>
+                
 				<div>
 			</div>
 			<div id="canvas"></div>
 			<div class="row row-bottom-padded-md"> <!-- Espacio para el grafo-->
 				
-				<div id="canvas"></div>
+			<div id="canvas"></div>
    				<div>
             		<button id="redraw" onclick="redraw();">redraw</button>
         		</div>
