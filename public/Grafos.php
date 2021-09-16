@@ -1,4 +1,6 @@
 <?php
+    require("administracion_datos.php");
+
     function crearmatriz($cantidad)
     {
         $arreglo=array();
@@ -30,6 +32,7 @@
             else
             {
                 $matriz[$vertice_2[$i]][$vertice_1[$i]]++;
+                $matriz[$vertice_1[$i]][$vertice_2[$i]]++;
             }
         }
         echo('<br/>');
@@ -81,7 +84,7 @@
         }
         echo('<br/>');
     }
-    matriz_caminos(4,[1,0,0,2],[0,1,1,3],true);
+    matriz_caminos(Cantidaddenodos(),Get_Vertice_A(),Get_Vertice_B(),Isdireccional());
     matriz_valoresA(3,[1,1,2,0,0],[0,2,1,1,1],[4,5,1,6,8]);
     
     function matriz_conexa($matriz,$cantidad)
