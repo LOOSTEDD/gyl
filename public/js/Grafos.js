@@ -22,4 +22,4 @@ function CrearMatriz(lado){
  return matriz;
 }
 
-console.log(Mtrizdecamino(3,[[0,2],[1,2],[0,1],[0,1],[2,1],[1,0]],true));
+console.log(Mtrizdecamino(5,[[0,2],[1,2],[0,1],[0,1],[2,1],[1,0]],true));
