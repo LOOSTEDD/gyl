@@ -25,14 +25,16 @@
 
     }
 
-    function matriz_caminos($cantidad,$vertice_1,$vertice_2)
+    function matriz_caminos($cantidad,$vertice_1,$vertice_2,$isdireccional)
     {
         $matriz=crearmatriz($cantidad);
 
         for($i=0;$i<count($vertice_1);$i++)
         {
             $matriz[$vertice_1[$i]][$vertice_2[$i]]++;
+            if (!$isdireccional){
             $matriz[$vertice_2[$i]][$vertice_1[$i]]++;
+            }
         }
         echo('<br/>');
         print("Matriz de camino");
