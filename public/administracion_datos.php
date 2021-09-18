@@ -25,8 +25,7 @@
 
     function Isdireccional(){
         $data = lectura_A();
-        
-        $caca = "Direccional: on";
+
         if(strlen($data[0])> 13){
             
             return true;

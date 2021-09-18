@@ -38,6 +38,7 @@
         echo('<br/>');
         print("Matriz de camino");
         mostrar_matriz($matriz,$cantidad);
+        return $matriz;
         
     }
 
@@ -84,31 +85,112 @@
         }
         echo('<br/>');
     }
-    matriz_caminos(Cantidaddenodos(),Get_Vertice_A(),Get_Vertice_B(),Isdireccional());
-    matriz_valoresA(3,[1,1,2,0,0],[0,2,1,1,1],[4,5,1,6,8]);
+    
+  print_r (conexiones(matriz_caminos(Cantidaddenodos(),Get_Vertice_A(),Get_Vertice_B(),Isdireccional()),Cantidaddenodos()));
     
     function matriz_conexa($matriz,$cantidad)
     {
-        $conexion=array();
-        $conexion_aux=array();
-        for($j=1;$j<$cantidad;$j++)
+        $numerador = arreglo_simple($cantidad);
+        for($i=0;$i<$cantidad;$i++)
         {
-            if($matriz[0][$j]!=0 || $matriz[$j][0]!=0)
-            {
-                array_push($conexion,$j);
-            }
-        }
+            $x=0;
+            $y=0;
+    
+           while($x==0)
+           {   
+               
+               $x = $matriz[$i][$numerador[$y]];
+               
+            
 
-        if(count($conexion)==count($cantidad)-1)
-        {
-            print("Es conexo");
+               
+               if($x==0)
+               {
+                   $y++;
+                   if($y == sizeof($numerador))
+                   {    
+                       
+                       return false;
+                     
+                   }
+                   
+               }
+               else
+               {   
+                   $numerador = quitar_array($numerador,$numerador[$y]);
+                   
+               }
+           }
         }
-        else
-        {
-            for($i=0;$i<count($conexion);$i++)
-            {
-                //escribir algo piensa pablo piensa
-            }
+        
+       return true;
+    }
+    
+    
+
+  function arreglo_simple($cantidad)
+  {
+    $arreglo = array();
+    for($i=0;$i<$cantidad;$i++) 
+    {
+        array_push($arreglo,$i);
+
+    }
+    return $arreglo;
+  }
+
+  function quitar_array($array,$valor)
+  {
+    $x=0;
+
+    while($valor!=$array[$x]){
+        $x++;
+    }
+    for($x;$x<sizeof($array)-1;$x++){
+        $array[$x]=$array[$x+1];
+    }
+    unset($array[sizeof($array)-1]);
+    return $array;
+  }
+
+  function camino($matriz,$A,$B,$cantidad)
+  { 
+    $conexiones = conexiones($matriz,$cantidad);
+    $arreglo= array();
+    for($i=0;$i<$cantidad;$i++)
+    {
+
+    }
+      
+
+  }
+
+function conexiones($matriz,$cantidad)
+{
+    $conexiones = array();
+      for($i=0;$i<$cantidad;$i++)
+      { 
+         array_push($conexiones,buscar_conexion($matriz,$i,$cantidad));
+
+      }
+ return $conexiones;
+}
+
+  function buscar_conexion($matriz,$A,$cantidad)
+  {
+      $conexiones = array();
+      $x=0;
+    while($x<$cantidad){
+        if($matriz[$A][$x]==1){
+            array_push($conexiones,$x);
+        
         }
-    }        
+        $x++;
+
+    }
+    return $conexiones;
+    }
+
+
+    
 ?>
