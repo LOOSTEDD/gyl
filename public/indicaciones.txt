@@ -1,4 +1,5 @@
 Direccional: on
+<<<<<<< HEAD
 Nodos: 3
 Direccional: on
 Nodos: 3
@@ -28,3 +29,6 @@ Direccional:
 Nodos: 69
 Direccional: on
 Nodos: 69
+=======
+Nodos: 4
+>>>>>>> 9b7e743b21236b4927ed0ed0bc1eac4b418e9776
