@@ -47,10 +47,23 @@
         {
             print("No es una matriz conexa");
         }
+        echo('<br/>');
+        if(euleriano($matriz,$cantidad,$isdireccional))
+        {
+            print("Es euleriano");
+            echo('<br/>');
+            print("Camino euleriano: ");
+            camino_euler($matriz,$cantidad);
+        }
+        else
+        {
+            print("No es eulerinano");
+
+        }
         
     }
 
-    matriz_caminos(5,[0,1,1],[2,4,3],false);
+    matriz_caminos(5,[0,0,1,2,2,3,4],[1,4,2,3,0,0,2],true);
 
     function matriz_valoresA($cantidad,$vertice_1,$vertice_2,$aristas)
     {
@@ -66,6 +79,7 @@
         }
         print("Matriz con valores de la arista");
         mostrar_matriz($matriz,$cantidad);
+
     }
 
     function mostrar_matriz($matriz,$cantidad)
@@ -269,6 +283,106 @@
         return $conexiones;
     }
 
+    function euleriano($matriz,$cantidad,$isdireccional)
+    {
+        $contador=0;
 
+        if(matriz_conexa($matriz,$cantidad))
+        {
+            if(!$isdireccional)  //caso matriz no direccional
+            {
+                for($i=0;$i<$cantidad;$i++)
+                {
+                    if(count(buscar_conexion($matriz,$i,$cantidad))%2==0)
+                    {
+                        $contador++;
+                    }
+                }
+            }
+            else
+            {
+                for($i=0;$i<$cantidad;$i++)
+                {
+                    if(count(buscar_conexion($matriz,$i,$cantidad))==count(conexionesentrantes($matriz,$i,$cantidad)))
+                    {
+                        $contador++;
+                    }
+                }
+            }
+
+            if($contador==$cantidad)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    function conexionesentrantes($matriz,$i,$cantidad)
+    {
+        $conexiones = array();
+        $x=0;
+        while($x<$cantidad)
+        {
+            if($matriz[$x][$i]>0)
+            {
+                array_push($conexiones,$x);
+            }
+            $x++;
+
+        }
+        return $conexiones;
+    }
+
+    function camino_euler($matriz,$cantidad)
+    {
+        $euler=array();
+        $verificador=0;
+        $i=0;   //recorrer matriz
+        while($verificador!=$cantidad)
+        {
+            $verificador=0;
+            $salientes=buscar_conexion($matriz,$i,$cantidad);
+            if(!in_array($i,$euler))
+            array_push($euler,$i);
+
+            array_push($euler,$salientes[0]);
+            $matriz[$i][$salientes[0]]=$matriz[$i][$salientes[0]]-1;
+
+            $i=$salientes[0];
+
+            for($x=0;$x<$cantidad;$x++)
+            {
+                $contador=0;
+                for($y=0;$y<$cantidad;$y++)
+                {
+                    if($matriz[$x][$y]==0)
+                    {
+                        $contador++;
+                    }
+                }
+
+                if($contador==$cantidad)
+                {
+                    $verificador++;
+                }
+            }
+
+        }
+        
+        for($i=0;$i<count($euler);$i++)
+        {
+            if($i>0)
+            print(", ");
+            print($euler[$i]);
+        }
+    }
     
 ?>
