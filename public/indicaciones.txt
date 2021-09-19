@@ -1,0 +1,30 @@
+Direccional: on
+Nodos: 3
+Direccional: on
+Nodos: 3
+Direccional: 
+Nodos: 4
+Direccional: 
+Nodos: 4
+Direccional: 
+Nodos: 67
+Direccional: 
+Nodos: 69
+Direccional: 
+Nodos: 69
+Direccional: 
+Nodos: 69
+Direccional: 
+Nodos: 69
+Direccional: f
+Nodos: 79
+Direccional: 
+Nodos: 79
+Direccional: f
+Nodos: 79
+Direccional: f
+Nodos: 32
+Direccional: 
+Nodos: 69
+Direccional: on
+Nodos: 69
