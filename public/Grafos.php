@@ -7,7 +7,7 @@
         $matriz=array();
         for($i=0;$i<$cantidad;$i++)
         {
-            array_push($arreglo,0);
+            array_push($arreglo,0);                                 // Crea matriz con los vertices dados
         }
 
         for($i=0;$i<$cantidad;$i++)
@@ -31,7 +31,7 @@
             }
             else
             {
-                $matriz[$vertice_2[$i]][$vertice_1[$i]]++;
+                $matriz[$vertice_2[$i]][$vertice_1[$i]]++;                          // Crea la matriz camino y muestra si es conexa
                 $matriz[$vertice_1[$i]][$vertice_2[$i]]++;
             }
         }
@@ -63,7 +63,11 @@
         
     }
 
+<<<<<<< HEAD
     matriz_caminos(5,[0,0,1,2,2,3,4],[1,4,2,3,0,0,2],true);
+=======
+    // matriz_caminos(5,[0,1,1],[2,4,3],false); MATRIZ PRUEBA
+>>>>>>> 963c7dfe40937b69198df9350bd3752a7f8aa113
 
     function matriz_valoresA($cantidad,$vertice_1,$vertice_2,$aristas)
     {
@@ -71,7 +75,7 @@
         //print(count($vertice_1));
         for($i=0;$i<count($vertice_1);$i++)
         {
-            if($matriz[$vertice_1[$i]][$vertice_2[$i]] == 0 && $matriz[$vertice_2[$i]][$vertice_1[$i]] == 0)
+            if($matriz[$vertice_1[$i]][$vertice_2[$i]] == 0 && $matriz[$vertice_2[$i]][$vertice_1[$i]] == 0)            // crea matriz con valor de las aristas, sirve ademas para ver camino optimo
             {
                 $matriz[$vertice_1[$i]][$vertice_2[$i]]=$aristas[$i];
                 $matriz[$vertice_2[$i]][$vertice_1[$i]]=$aristas[$i];
@@ -93,7 +97,7 @@
             }
             echo "[$i] ";
         }
-        
+                                                //imprime matriz seleccionada
         echo('<pre>');
         
         for($i=0;$i<$cantidad;$i++)
@@ -112,7 +116,7 @@
     
     //print_r (conexiones(matriz_caminos(Cantidaddenodos(),Get_Vertice_A(),Get_Vertice_B(),Isdireccional()),Cantidaddenodos()));
     
-    function matriz_conexa($matriz,$cantidad)
+    function matriz_conexa($matriz,$cantidad)                           //Muestra si una matriz es conexa NO TOCAR POR NADA DEL MUNDO
     {
         for($i=0;$i<$cantidad;$i++)
         {
@@ -257,12 +261,12 @@
 
     }*/
 
-    function conexiones($matriz,$cantidad)
+    function conexiones($matriz,$cantidad) 
     {
         $conexiones = array();
         for($i=0;$i<$cantidad;$i++)
         {
-            array_push($conexiones,buscar_conexion($matriz,$i,$cantidad));
+            array_push($conexiones,buscar_conexion($matriz,$i,$cantidad));                          // contabiliza las conexiones dentro una matriz
         }
         return $conexiones;
     }
@@ -275,7 +279,7 @@
         {
             if($matriz[$A][$x]>0)
             {
-                array_push($conexiones,$x);
+                array_push($conexiones,$x);                                                     //retorna el numero de conexiones de un vertice en especifico.
             }
             $x++;
 

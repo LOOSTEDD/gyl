@@ -1,5 +1,4 @@
 <?php
-    require("administracion_datos.php");
     require("grafos.php")
 ?>
 <!DOCTYPE HTML>
@@ -141,7 +140,7 @@
 				</div>
 				
 			</div>
-		</div>
+		</div> 
 	</nav>
 
 	<div id="fh5co-about">
@@ -167,65 +166,13 @@
 			<div class="row animate-box">	
 				<div class="col-md-6 col-md-offset-3 text-center heading-section">
 					<h3>Resultados</h3>
-                    <p>
+                    <p> 
                       
                     </p>
 				<div>
 			</div>
 		</div>
 	</div>
-
-	<div id="fh5co-content-section">
-		<div class="container">
-			<div class="row row-bottom-padded-md">
-				<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-					<h3>Our Team</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit est facilis maiores, perspiciatis accusamus asperiores sint consequuntur debitis.</p>
-				</div>
-			</div>
-		</div>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4">
-					<div class="fh5co-team text-center animate-box">
-						<figure>
-							<img src="images/user-1.jpg" alt="user">
-						</figure>
-						<p>Jean Doe, XYZ Co. <br> <span class="text-mute">Designer</span></p>
-						<blockquote>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-						</blockquote>
-						
-
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="fh5co-team text-center animate-box">
-						<figure>
-							<img src="images/user-2.jpg" alt="user">
-						</figure>
-						<p>Jean Doe, XYZ Co. <br> <span class="text-mute">Developer</span></p>
-						<blockquote>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-						</blockquote>
-						
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="fh5co-team text-center animate-box">
-						<figure>
-							<img src="images/user-3.jpg" alt="user">
-						</figure>
-						<p>Jean Doe, XYZ Co. <br> <span class="text-mute">Photographer</span></p>
-						<blockquote>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-						</blockquote>
-						
-					</div>
-				</div>
-			</div>
-
-
 
 	<div class="gototop js-top">
 		<a href="#" class="js-gotop"><i class="icon-arrow-up22"></i></a>
