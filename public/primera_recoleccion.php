@@ -1,14 +1,21 @@
 <?php
-   $nodos=$_POST['nodos'];
-   $direccional=$_POST['direccional'];
-   $guardar=fopen('indicaciones.txt','a+');
-   fwrite($guardar,'Direccional: ');
-   fwrite($guardar,$direccional);
-   fwrite($guardar,"\n");
-   fwrite($guardar,'Nodos: ');
-   fwrite($guardar,$nodos);
-   fwrite($guardar,"\n");
-   fclose($guardar);
+ if(sizeof($_POST)==1)
+ {
+	$direccional='';
+ }  
+else
+{
+	$direccional='on';
+}
+ 	$nodos=$_POST['nodos'];
+   	$guardar=fopen('indicaciones.txt','a+');
+   	fwrite($guardar,'Direccional: ');
+   	fwrite($guardar,$direccional);
+   	fwrite($guardar,"\n");
+   	fwrite($guardar,'Nodos: ');
+   	fwrite($guardar,$nodos);
+   	fwrite($guardar,"\n");
+   	fclose($guardar);
 ?>
 <!DOCTYPE HTML>
 <html>

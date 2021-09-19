@@ -1,8 +1,43 @@
 Direccional: on
+<<<<<<< HEAD
+Nodos: 3
+Direccional: on
+Nodos: 3
+Direccional: 
 Nodos: 4
 Direccional: 
-Nodos: 2
+Nodos: 4
+Direccional: 
+Nodos: 67
+Direccional: 
+Nodos: 69
+Direccional: 
+Nodos: 69
+Direccional: 
+Nodos: 69
+Direccional: 
+Nodos: 69
+Direccional: f
+Nodos: 79
+Direccional: 
+Nodos: 79
+Direccional: f
+Nodos: 79
+Direccional: f
+Nodos: 32
+Direccional: 
+Nodos: 69
+Direccional: on
+Nodos: 69
+=======
+Nodos: 4
+<<<<<<< HEAD
 Direccional: 
 Nodos: 2
 Direccional: 
 Nodos: 2
+Direccional: 
+Nodos: 2
+=======
+>>>>>>> 9b7e743b21236b4927ed0ed0bc1eac4b418e9776
+>>>>>>> 972d6075d19a0901c3f55a241e50423c9c5f97f4

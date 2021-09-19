@@ -1,16 +1,6 @@
 <?php
-   
-    $vertice1=$_POST['vertice1'];
-    $vertice2=$_POST['vertice2'];
-	$valor=$_POST['varista'];
-    $guardar=fopen('matriz.txt','a+');
-    fwrite($guardar,$vertice1);
-    fwrite($guardar,',');
-	fwrite($guardar,$vertice2);
-	fwrite($guardar,'  ');
-	fwrite($guardar,$valor);
-	fwrite($guardar,"\n");
-    fclose($guardar);
+    require("administracion_datos.php");
+    require("grafos.php")
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -176,18 +166,10 @@
 			</div>
 			<div class="row animate-box">	
 				<div class="col-md-6 col-md-offset-3 text-center heading-section">
-					<h3>Demostracion</h3>
-					<p align = "justify">Ingrese sus valores:</p>
-					<form action="recoleccion_de_datos.php" mclass="#fh5co-started" method="POST">
-					<p>	
-						Vertices: <input type="number" min="0" name="vertice1"> <input type="number" min="0" name="vertice2">
-						<p align = "text-center">Valor arista:<input type="number" min="0" name="varista"></p>
-						<input type="submit" value="Ingresar">
-					</p>
-					</form>
-					<p>
-						<a href="resultados.php"><input type="button" value="Mostrar resultados"></a>
-					</p>
+					<h3>Resultados</h3>
+                    <p>
+                      
+                    </p>
 				<div>
 			</div>
 		</div>
