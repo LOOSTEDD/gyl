@@ -38,9 +38,19 @@
         echo('<br/>');
         print("Matriz de camino");
         mostrar_matriz($matriz,$cantidad);
-        return $matriz;
+        
+        if(matriz_conexa($matriz,$cantidad))
+        {
+            print("Es una matriz conexa");
+        }
+        else
+        {
+            print("No es una matriz conexa");
+        }
         
     }
+
+    matriz_caminos(5,[0,1,1],[2,4,3],false);
 
     function matriz_valoresA($cantidad,$vertice_1,$vertice_2,$aristas)
     {
@@ -86,109 +96,177 @@
         echo('<br/>');
     }
     
-  print_r (conexiones(matriz_caminos(Cantidaddenodos(),Get_Vertice_A(),Get_Vertice_B(),Isdireccional()),Cantidaddenodos()));
+    //print_r (conexiones(matriz_caminos(Cantidaddenodos(),Get_Vertice_A(),Get_Vertice_B(),Isdireccional()),Cantidaddenodos()));
     
     function matriz_conexa($matriz,$cantidad)
     {
-        $numerador = arreglo_simple($cantidad);
         for($i=0;$i<$cantidad;$i++)
         {
-            $x=0;
-            $y=0;
-    
-           while($x==0)
-           {   
-               
-               $x = $matriz[$i][$numerador[$y]];
-               
-            
+            $contador=0;
 
-               
-               if($x==0)
-               {
-                   $y++;
-                   if($y == sizeof($numerador))
-                   {    
-                       
-                       return false;
-                     
-                   }
-                   
-               }
-               else
-               {   
-                   $numerador = quitar_array($numerador,$numerador[$y]);
-                   
-               }
-           }
+            for($j=0; $j <$cantidad ;$j++)
+            {
+                if($matriz[$i][$j]!=0 || $matriz[$j][$i]!=0)
+                {
+                    $contador++;
+                }
+            }
+
+            if($contador==$cantidad-1 || $contador==$cantidad)
+            {
+                return true;
+            }
         }
-        
-       return true;
+
+        $contador=0;
+        $i=0;
+        $grafo=array();
+        $total=conexiones($matriz,$cantidad);
+
+        while($i<$cantidad)
+        {
+            if($i>0)
+            {
+                $conexiones_A=buscar_conexion($matriz,$i-1,$cantidad);
+            }
+
+            $conexiones=buscar_conexion($matriz,$i,$cantidad);
+
+            if(empty($conexiones))
+            {
+                return false;
+            }
+            if(empty($grafo) || !in_array($i,$grafo))
+            {
+
+                if($i==0)
+                {
+                    array_push($grafo,$i);
+                    $contador++;
+                    for($j=0;$j<count($conexiones);$j++)
+                    {
+                        if(!in_array($conexiones[$j],$grafo))
+                        {
+                            array_push($grafo,$conexiones[$j]);
+                            $contador++;
+                        }
+                    }
+                    
+                }
+                elseif(in_array($i,$conexiones_A))
+                {
+                    array_push($grafo,$i);
+                    $contador++;
+
+                    for($j=0;$j<count($conexiones);$j++)
+                    {
+                        if(!in_array($conexiones[$j],$grafo))
+                        {
+                            array_push($grafo,$conexiones[$j]);
+                            $contador++;
+                        }
+                    }
+                }
+            }
+            elseif(in_array($i,$grafo))
+            {
+                if(in_array($i,$conexiones_A))
+                {
+                    for($j=0;$j<count($conexiones);$j++)
+                    {
+                        if(!in_array($conexiones[$j],$grafo))
+                        {
+                            array_push($grafo,$conexiones[$j]);
+                            $contador++;
+                        }
+                    }
+                }
+            }
+            $i++;
+        }
+        for($j=0;$j<count($grafo);$j++)
+        {
+            $comprobante=buscar_conexion($matriz,$grafo[$j],$cantidad);
+            for($x=0;$x<count($comprobante);$x++)
+            {
+                if(!in_array($comprobante[$x],$grafo))
+                {
+                    array_push($grafo,$comprobante[$x]);
+                    $contador++;
+                }
+            }
+        }
+        if($contador==$cantidad)
+        {
+            return true;
+        }
     }
     
     
 
-  function arreglo_simple($cantidad)
-  {
-    $arreglo = array();
-    for($i=0;$i<$cantidad;$i++) 
+    /*function arreglo_simple($cantidad)
     {
-        array_push($arreglo,$i);
+        $arreglo = array();
+        for($i=0;$i<$cantidad;$i++) 
+        {
+            array_push($arreglo,$i);
 
+        }
+        return $arreglo;
     }
-    return $arreglo;
-  }
 
-  function quitar_array($array,$valor)
-  {
-    $x=0;
-
-    while($valor!=$array[$x]){
-        $x++;
-    }
-    for($x;$x<sizeof($array)-1;$x++){
-        $array[$x]=$array[$x+1];
-    }
-    unset($array[sizeof($array)-1]);
-    return $array;
-  }
-
-  function camino($matriz,$A,$B,$cantidad)
-  { 
-    $conexiones = conexiones($matriz,$cantidad);
-    $arreglo= array();
-    for($i=0;$i<$cantidad;$i++)
+    function quitar_array($array,$valor)
     {
+        $x=0;
 
+        while($valor!=$array[$x])
+        {
+            $x++;
+        }
+        for($x;$x<sizeof($array)-1;$x++)
+        {
+            $array[$x]=$array[$x+1];
+        }
+        unset($array[sizeof($array)-1]);
+        return $array;
     }
+
+    function camino($matriz,$A,$B,$cantidad)
+    { 
+        $conexiones = conexiones($matriz,$cantidad);
+        $arreglo= array();
+        for($i=0;$i<$cantidad;$i++)
+        {
+
+        }
       
 
-  }
+    }*/
 
-function conexiones($matriz,$cantidad)
-{
-    $conexiones = array();
-      for($i=0;$i<$cantidad;$i++)
-      { 
-         array_push($conexiones,buscar_conexion($matriz,$i,$cantidad));
-
-      }
- return $conexiones;
-}
-
-  function buscar_conexion($matriz,$A,$cantidad)
-  {
-      $conexiones = array();
-      $x=0;
-    while($x<$cantidad){
-        if($matriz[$A][$x]==1){
-            array_push($conexiones,$x);
-        
+    function conexiones($matriz,$cantidad)
+    {
+        $conexiones = array();
+        for($i=0;$i<$cantidad;$i++)
+        {
+            array_push($conexiones,buscar_conexion($matriz,$i,$cantidad));
         }
-        $x++;
-
+        return $conexiones;
     }
-    return $conexiones;
+
+    function buscar_conexion($matriz,$A,$cantidad)
+    {
+        $conexiones = array();
+        $x=0;
+        while($x<$cantidad)
+        {
+            if($matriz[$A][$x]>0)
+            {
+                array_push($conexiones,$x);
+            }
+            $x++;
+
+        }
+        return $conexiones;
     }
 
 

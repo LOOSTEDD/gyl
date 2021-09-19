@@ -1,2 +1,8 @@
 Direccional: on
 Nodos: 4
+Direccional: 
+Nodos: 2
+Direccional: 
+Nodos: 2
+Direccional: 
+Nodos: 2
