@@ -179,11 +179,11 @@
 					<h3>Demostracion</h3>
 					<p align = "justify">Ingrese sus valores:</p>
 					<form action="recoleccion_de_datos.php" mclass="#fh5co-started" method="POST">
-					<p>	
-						Vertices: <input type="number" min="0" name="vertice1"> <input type="number" min="0" name="vertice2">
-						<p align = "text-center">Valor arista:<input type="number" min="0" name="varista"></p>
-						<input type="submit" value="Ingresar">
-					</p>
+						<p>	
+							Vertices: <input type="number" min="0" name="vertice1"> <input type="number" min="0" name="vertice2">
+							<p align = "text-center">Valor arista:<input type="number" min="0" name="varista"></p>
+							<input type="submit" value="Ingresar">
+						</p>
 					</form>
 					<p>
 						<a href="resultados.php"><input type="button" value="Mostrar resultados"></a>

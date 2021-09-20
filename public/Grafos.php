@@ -523,7 +523,8 @@
         {
             print("Su grafo es hamiltoniano. ");
             echo ('<br/>');
-            print("Su camino hamlintoniano es: ");
+            echo '<li/>';
+            print("Su camino hamiltoniano es: ");
             for($i=0;$i<count($hamilton);$i++)
             {
                 if($i>0)
