@@ -424,8 +424,11 @@
     }
 
 
-    function caminos($matriz,$A,$cantidad)
+    function caminos($A)
     {   
+        $matriz = matriz_caminos();
+        $matrizV= matriz_valoresA();
+        $cantidad = Cantidaddenodos();
         $caminos_cortos = array();
         for($i=0;$i<$cantidad;$i++)
         {
@@ -440,8 +443,11 @@
                 {
                     $camino["distancia"] = 99999999999999;
                 }
-                if($matriz[$A][$i]==0)
-                {
+                if($matriz[$A][$i]!=0)
+                {   
+                    $camino["distancia"]= $matrizV[$A][$i];
+                    $camino["antecesor"]= $A;
+
 
                 }
             
@@ -453,8 +459,6 @@
 
 
 
-function Get_valor_vertice(){
 
-}
     
 ?>
