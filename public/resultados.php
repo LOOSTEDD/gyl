@@ -209,7 +209,7 @@
 									}
 									else
 									{
-										print_r('Su grafo no es euleriana.');
+										print_r('Su grafo no es euleriano.');
 									}
 								?>
 							</li>
@@ -224,7 +224,7 @@
 								
 						</ul>
 						<form action="resultados2.php" mclass="#fh5co-started" method="POST">
-							<p>	Nodos para camino mas corto</p>
+							<p>Nodos para camino mas corto</p>
 							<p><input type="number" min="0" name="nodo1"> <input type="number" min="0" name="nodo2"></p>
 							<p>Nodos para flujo maximo</p>
 							<p><input type="number" min="0" name="nodo3"> <input type="number" min="0" name="nodo4"></p>
