@@ -25,7 +25,6 @@
         $vertice_1=Get_Vertice_A();
         $vertice_2=Get_Vertice_B();
         $isdireccional=Isdireccional();
-        print_r($isdireccional);
         $matriz=crearmatriz($cantidad);
 
         for($i=0;$i<count($vertice_1);$i++)
@@ -63,19 +62,20 @@
         return $matriz;
     }
     
-    function mostrar_matriz($matriz,$cantidad)
+    function mostrar_matriz($matriz)
     {
-        echo('<pre>');
+        $cantidad=Cantidaddenodos();
+        echo("\n");
         for($i=0;$i<$cantidad;$i++)
         {
             if($i==0)
             {
-                echo "&nbsp&nbsp&nbsp";
+                echo "\t&nbsp&nbsp";
             }
-            echo "[$i] ";
+            echo "[$i]&nbsp";
         }
                                                 //imprime matriz seleccionada
-        echo('<pre>');
+        echo('<br/>');
         
         for($i=0;$i<$cantidad;$i++)
         {
@@ -86,7 +86,7 @@
                 print_r($matriz[$i][$j]);
                 echo "&nbsp&nbsp";
             }
-            echo('<pre>');
+            echo('<br/>');
         }
         echo('<br/>');
     }
@@ -331,6 +331,7 @@
     {
         $matriz=matriz_caminos();
         $cantidad=Cantidaddenodos();
+        $direccional=Isdireccional();
         $euler=array();
         $verificador=0;
         $i=0;   //recorrer matriz
@@ -339,13 +340,18 @@
             $verificador=0;
             $salientes=buscar_conexion($matriz,$i,$cantidad);
             if(!in_array($i,$euler))
-            array_push($euler,$i);
-
+                array_push($euler,$i);
+            
             array_push($euler,$salientes[0]);
-            $matriz[$i][$salientes[0]]=$matriz[$i][$salientes[0]]-1;
-
+            if($direccional)
+                $matriz[$i][$salientes[0]]=$matriz[$i][$salientes[0]]-1;
+            else
+            {
+                $matriz[$i][$salientes[0]]=$matriz[$i][$salientes[0]]-1;
+                $matriz[$salientes[0]][$i]=$matriz[$salientes[0]][$i]-1;
+            }
             $i=$salientes[0];
-
+           
             for($x=0;$x<$cantidad;$x++)
             {
                 $contador=0;
@@ -364,7 +370,6 @@
             }
 
         }
-        
         for($i=0;$i<count($euler);$i++)
         {
             if($i>0)
@@ -372,7 +377,6 @@
             print($euler[$i]);
         }
     }
-
 
     function caminos($A,$B)
     {   
@@ -458,7 +462,7 @@
 
 
 
-print_r(caminos(1,4));
+
     function hamiltoniano()
     {
         $matriz=matriz_caminos();

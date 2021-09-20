@@ -1,2 +1,2 @@
-Direccional: on
-Nodos: 5
+Direccional: 
+Nodos: 3
