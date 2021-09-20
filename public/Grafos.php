@@ -1,5 +1,6 @@
 <?php
-    require("administracion_datos.php");
+    use Illuminate\Foundation\Inspiring;
+    use Illuminate\Support\Facades\Artisan;
 
     function crearmatriz($cantidad)
     {
@@ -18,12 +19,23 @@
         return $matriz;
 
     }
+    function Nodo_exist($vertices,$cantidad){
+        for($i=0;$i<sizeof($vertices);$i++)
+        {
+            if($vertices[$i]>$cantidad)
+            {
+                log::error("El nodo".$vertices[$i]."no existe");
+            }
+        }
+    }
 
     function matriz_caminos()
     {
         $cantidad=Cantidaddenodos();
         $vertice_1=Get_Vertice_A();
+        Nodo_exist($vertice_1,$cantidad);
         $vertice_2=Get_Vertice_B();
+        Nodo_exist($vertice_2,$cantidad);
         $isdireccional=Isdireccional();
         $matriz=crearmatriz($cantidad);
 
@@ -39,6 +51,7 @@
                 $matriz[$vertice_1[$i]][$vertice_2[$i]]++;
             }
         }
+        log::info("Matriz de caminos creada correctamente");
         return $matriz;
     }
 
@@ -50,7 +63,7 @@
         $vertice_2=Get_Vertice_B();
         $aristas=Get_Peso();
         $matriz = crearmatriz($cantidad);
-        //print(count($vertice_1));
+        
         for($i=0;$i<count($vertice_1);$i++)
         {
             if($matriz[$vertice_1[$i]][$vertice_2[$i]] == 0 && $matriz[$vertice_2[$i]][$vertice_1[$i]] == 0)            // crea matriz con valor de las aristas, sirve ademas para ver camino optimo
@@ -59,13 +72,14 @@
                 $matriz[$vertice_2[$i]][$vertice_1[$i]]=$aristas[$i];
             }
         }
+        log::info("Matriz de valores creada correctamente");
         return $matriz;
     }
     
     function mostrar_matriz($matriz)
     {
         $cantidad=Cantidaddenodos();
-        echo("\n");
+        echo"\n";
         for($i=0;$i<$cantidad;$i++)
         {
             if($i==0)
@@ -75,7 +89,7 @@
             echo "[$i]&nbsp";
         }
                                                 //imprime matriz seleccionada
-        echo('<br/>');
+        echo'<br/>';
         
         for($i=0;$i<$cantidad;$i++)
         {
@@ -86,12 +100,12 @@
                 print_r($matriz[$i][$j]);
                 echo "&nbsp&nbsp";
             }
-            echo('<br/>');
+            echo'<br/>';
         }
-        echo('<br/>');
+        echo'<br/>';
     }
     
-    //print_r (conexiones(matriz_caminos(Cantidaddenodos(),Get_Vertice_A(),Get_Vertice_B(),Isdireccional()),Cantidaddenodos()));
+    
     
     function matriz_conexa()                           //Muestra si una matriz es conexa NO TOCAR POR NADA DEL MUNDO
     {
@@ -112,6 +126,7 @@
 
             if($contador==$cantidad-1 || $contador==$cantidad)
             {
+                log::info("El grafo es conexo");
                 return true;
             }
         }
@@ -201,44 +216,7 @@
     
     
 
-    /*function arreglo_simple($cantidad)
-    {
-        $arreglo = array();
-        for($i=0;$i<$cantidad;$i++) 
-        {
-            array_push($arreglo,$i);
-
-        }
-        return $arreglo;
-    }
-
-    function quitar_array($array,$valor)
-    {
-        $x=0;
-
-        while($valor!=$array[$x])
-        {
-            $x++;
-        }
-        for($x;$x<sizeof($array)-1;$x++)
-        {
-            $array[$x]=$array[$x+1];
-        }
-        unset($array[sizeof($array)-1]);
-        return $array;
-    }
-
-    function camino($matriz,$A,$B,$cantidad)
-    { 
-        $conexiones = conexiones($matriz,$cantidad);
-        $arreglo= array();
-        for($i=0;$i<$cantidad;$i++)
-        {
-
-        }
-      
-
-    }*/
+    
 
     function conexiones($matriz,$cantidad) 
     {
@@ -378,8 +356,10 @@
         }
     }
 
-    function caminos($A,$B)
+    function caminos()
     {   
+        $A = Get_Nodos()[0];
+        $B = Get_Nodos()[1];
         $matriz = matriz_caminos();
         $matrizV= matriz_valoresA();
         $cantidad = Cantidaddenodos();
@@ -446,14 +426,15 @@
                  
                 $camino = $camino.",".$B;
                 
-                $optimo["camino"]= $camino;
-                $optimo["valor"] = $distancia[$B];
+                $optimo[0]= $camino;
+                $optimo[1] = $distancia[$B];
                 return $optimo;
         }
     
         else
         {
-            echo "No se ha encontrado camino";
+            log::info("No se ha encontrado un camino optimo");
+            log::error("error en el camino mas optimo");
             return 0;
         }
     }
@@ -469,10 +450,7 @@
         $aux=array();
         while($contador<$cantidad+1)
         {
-            //print("hola");
             
-            //print_r($hamilton);
-            //print($contador);
             $conexiones=buscar_conexion($matriz,$i,$cantidad);
             if($i==0 && !in_array($i,$hamilton))
             {
@@ -481,11 +459,11 @@
             }
             if(!in_array($conexiones[$j],$hamilton) || ($conexiones[$j]==$hamilton[0] && $contador==$cantidad))
             {
-                $j=0;
                 array_push($aux,$i);
                 $i=$conexiones[$j];
                 array_push($hamilton,$i);
                 $contador++;
+                $j=0;
             }
             else
             {
@@ -518,12 +496,14 @@
                 }
             }
         }
-
+        
         if($hamilton[0]==$hamilton[$cantidad])
         {
             print("Su grafo es hamiltoniano. ");
-            echo ('<br/>');
-            print("Su camino hamlintoniano es: ");
+            log::info("Grafo es hamiltoniano");
+            echo '<br/>';
+            echo '<li/>';
+            print("Su camino hamiltoniano es: ");
             for($i=0;$i<count($hamilton);$i++)
             {
                 if($i>0)
@@ -534,7 +514,9 @@
         }
         else
         {
+            log::info("Grafo no es hamiltoneano");
             print("Su grafo no es hamiltoniano. ");
         }
     }
+
 ?>

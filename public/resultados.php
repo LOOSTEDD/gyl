@@ -2,7 +2,7 @@
 	require("grafos.php")
 ?>
 <!DOCTYPE HTML>
-<html>
+<html lang="es">
 	<head>
 
 	<!--TRABAJO 1-->	
@@ -39,7 +39,7 @@
 	<meta name="twitter:url" content="" />
 	<meta name="twitter:card" content="" />
 
-	<!-- <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">	 -->
+	
 	<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
 	
 	<!-- Animate.css -->
@@ -149,7 +149,7 @@
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 					<h2>Trabajo 1</h2>
 					<p>En la siguiente pagina se podra observar el desarrollo de la primera actividad a evaluar, la cual posee las siguientes exigencias:
-						<ul align = "justify">
+						<ul caption = "justify">
 							<li>Lograr ingresar un grafo a la aplicación</li>
 							<li>Mostrar matriz de caminos e indicar si el grafo es o no conexo.</li>
 							<li>Mostrar el camino más corto para dos nodos a elección del usuario, mostrando la duración
@@ -167,14 +167,14 @@
 				<div class="col-md-6 col-md-offset-3 text-center heading-section">
 					<h3>Resultados</h3>
                     <p> 
-						<ul align = "justify">
+						<ul caption = "justify">
 							<li> Matriz camino: </li>
 						</ul>
 						<?php 
 							$matriz_c= matriz_caminos();
 							mostrar_matriz($matriz_c);
 						?>
-						<ul align = "justify">
+						<ul caption= "justify">
 							<li>
 							<?php 
 								$conex=matriz_conexa();
@@ -194,7 +194,7 @@
 								$matriz_a=matriz_valoresA();
 								mostrar_matriz($matriz_a);
 						?>
-						<ul align = "justify">
+						<ul caption = "justify">
 							<li>
 								<?php
 									$eu=euleriano();
@@ -213,8 +213,23 @@
 									}
 								?>
 							</li>
+							<li> 
+									<?php
+										hamiltoniano();
+									?>
+							</li>
+							<!--<li>
 
+							</li>-->
+								
 						</ul>
+						<form action="resultados2.php" mclass="#fh5co-started" method="POST">
+							<p>	Nodos para camino mas corto</p>
+							<p><input type="number" min="0" name="nodo1"> <input type="number" min="0" name="nodo2"></p>
+							<p>Nodos para flujo maximo</p>
+							<p><input type="number" min="0" name="nodo3"> <input type="number" min="0" name="nodo4"></p>
+							<input type="submit" value="Ingresar">
+						</form>
                     </p>
 				<div>
 			</div>

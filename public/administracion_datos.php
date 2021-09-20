@@ -1,6 +1,10 @@
 <?php
-   
-    function lectura_A (){
+   use Illuminate\Foundation\Inspiring;
+   use Illuminate\Support\Facades\Artisan;
+
+    function lectura_A ()
+    {
+        log::info("Lectura de archivo indicaciones.txt");
         $fp = fopen ("indicaciones.txt","r");
         $i = 0 ;
         $datos = array();
@@ -12,7 +16,20 @@
             return $datos;
     }
     function lectura_B (){
+        log::info("Lectura de archivo matriz.txt");
         $fp = fopen ("matriz.txt","r");
+        $i = 0 ;
+        $datos = array();
+        while (!feof($fp)){
+            $linea = fgets($fp);
+            array_push($datos,$linea);
+        }
+        
+            return $datos;
+    }
+    function lectura_C (){
+        log::info("Lectura de archivo nodos.txt");
+        $fp = fopen ("nodos.txt","r");
         $i = 0 ;
         $datos = array();
         while (!feof($fp)){
@@ -26,12 +43,15 @@
     function Isdireccional(){
         $data = lectura_A();
 
-        if(strlen($data[0])> 14){
+        if(strlen($data[0])> 14)
+        {
+            log::info("El grafo es direccional");
             
             return true;
         }
        else
         {
+            log::info("El grafo no es direccional");
             
             return false;
         }
@@ -103,56 +123,100 @@
 
     
 
-function Get_Vertice_A(){
-    $aristas = getaristas(); 
-    $tamano = sizeof($aristas);
-    $data = array();
-    for($i=0;$i<$tamano;$i++){ 
-        array_push($data,$aristas[$i][0]);
+    function Get_Vertice_A(){
+        $aristas = getaristas(); 
+        $tamano = sizeof($aristas);
+        $data = array();
+        for($i=0;$i<$tamano;$i++){ 
+            array_push($data,$aristas[$i][0]);
+
+        }
+        return $data;
 
     }
-    return $data;
 
-}
-
-function Get_Vertice_B(){
-    $aristas = getaristas(); 
-    $tamano = sizeof($aristas);
-    $data = array();
-    for($i=0;$i<$tamano;$i++){ 
+    function Get_Vertice_B(){
+        $aristas = getaristas(); 
+        $tamano = sizeof($aristas);
+        $data = array();
+        for($i=0;$i<$tamano;$i++){ 
     
-        array_push($data,$aristas[$i][1]);
+            array_push($data,$aristas[$i][1]);
 
-    }
-    return $data;
+        }
+        return $data;
 
 }
-function Get_Peso(){
-    $aristas = getaristas(); 
-    $tamano = sizeof($aristas);
-    $data = array();
-    for($i=0;$i<$tamano;$i++){ 
+    function Get_Peso(){
+        $aristas = getaristas(); 
+        $tamano = sizeof($aristas);
+        $data = array();
+        for($i=0;$i<$tamano;$i++){ 
     
-        array_push($data,$aristas[$i][2]);
+            array_push($data,$aristas[$i][2]);
+
+         }
+        return $data;
+
+}
+
+
+    function Get_tamano(){
+        $aristas = getaristas(); 
+        $tamano = sizeof($aristas);
+        return $tamano;
 
     }
-    return $data;
-
-}
 
 
-function Get_tamano(){
-    $aristas = getaristas(); 
-    $tamano = sizeof($aristas);
-    return $tamano;
+    function Get_Nodos()
+    {
+        $data  = lectura_C();
+        $nodos= array();
+        $cadena = "";
+        $i=0;
+        while($data[0][$i] != ',')
+        {
+           
+            $cadena=$cadena.$data[0][$i];
+            $i++;
+        }
+        array_push($nodos,intval($cadena));
+        $cadenaB="";
+        $i++;
+        while($i<strlen($data[0]))
+        {
+        
+            $cadenaB=$cadenaB.$data[0][$i];
+            $i++;
+        }
+        array_push($nodos,intval($cadenaB));
+        return $nodos;
 
-}
+    }
 
-
-
-
-
-
-
+    function Get_Nodos_B()
+    {
+        $data  = lectura_C();
+        $nodos= array();
+        $cadena = "";
+        $i=0;
+        while($data[1][$i] != ',')
+        {
+            $cadena=$cadena.$data[1][$i];
+            $i++;
+        }
+        array_push($nodos,intval($cadena));
+        $cadenaB="";
+        $i++;
+        while($i<strlen($data[1]))
+        {
+        
+            $cadenaB=$cadenaB.$data[1][$i];
+            $i++;
+        }
+        array_push($nodos,intval($cadenaB));
+        return $nodos;
+    }
 
 ?>
