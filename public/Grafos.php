@@ -381,14 +381,47 @@
         $hamilton=array();
         $contador=0;
         $i=0;
+        $j=0;
+        $aux=0;
         while($contador!=$cantidad)
         {
             $conexiones=buscar_conexion($matriz,$i,$cantidad);
-            if(!in_array($i,$hamilton))
+            if($i==0 && !in_array($i,$hamilton))
             {
                 array_push($hamilton,$i);
+                $contador++;
             }
+            if(!in_array($conexiones[$j],$hamilton) || ($conexiones[$j]==$hamilton[0] && $contador==$cantidad-1))
+            {
+                $j=0;
+                $aux=$i;
+                $i=$conexiones[$j];
+                array_push($hamilton,$i);
+                $contador++;
+            }
+            else
+            {
+                array_pop($hamilton);
+                $contador--;
+                $i=$aux;
+                $j++;
+            }
+            if($j>=count($conexiones))
+            {
+                print("No es hamiltoniano");
+                break;
+            }
+        }
 
+        if($hamilton[0]==$hamilton[$cantidad-1])
+        {
+            print("Es hamiltoniano");
+            for($i=0;$i<count($hamilton);$i++)
+            {
+                if($i>0)
+                print(", ");
+                print($hamilton[$i]);
+            }
         }
     }
     
