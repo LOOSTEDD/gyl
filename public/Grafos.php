@@ -481,11 +481,11 @@
             }
             if(!in_array($conexiones[$j],$hamilton) || ($conexiones[$j]==$hamilton[0] && $contador==$cantidad))
             {
-                $j=0;
                 array_push($aux,$i);
                 $i=$conexiones[$j];
                 array_push($hamilton,$i);
                 $contador++;
+                $j=0;
             }
             else
             {
