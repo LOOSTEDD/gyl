@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 Direccional: on
 Nodos: 5
+=======
+Direccional: 
+Nodos: 3
+>>>>>>> ffe0483988808f59a0070e6c6109c1b22e844729

@@ -1,8 +1,10 @@
 <?php
 	fopen('matriz.txt','a+');
-	$guardar=fopen('indicaciones.txt','a+');
+	fopen('indicaciones.txt','a+');
+	fopen('nodos.txt','a+');
 	unlink('indicaciones.txt');
 	unlink('matriz.txt');
+	unlink('nodos.txt');
 ?>
 
 <!DOCTYPE HTML>
