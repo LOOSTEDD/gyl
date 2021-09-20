@@ -62,12 +62,29 @@
         }
         
     }
+    function matriz_caminos_r($cantidad,$vertice_1,$vertice_2,$isdireccional)
+    {
 
-<<<<<<< HEAD
-    matriz_caminos(5,[0,0,1,2,2,3,4],[1,4,2,3,0,0,2],true);
-=======
+        $matriz=crearmatriz($cantidad);
+
+        for($i=0;$i<count($vertice_1);$i++)
+        {
+            if($isdireccional)
+            {
+                $matriz[$vertice_1[$i]][$vertice_2[$i]]++;
+            }
+            else
+            {
+                $matriz[$vertice_2[$i]][$vertice_1[$i]]++;                          // Crea la matriz camino y muestra si es conexa
+                $matriz[$vertice_1[$i]][$vertice_2[$i]]++;
+            }
+        }
+        return $matriz;
+        
+        
+    }
+
     // matriz_caminos(5,[0,1,1],[2,4,3],false); MATRIZ PRUEBA
->>>>>>> 963c7dfe40937b69198df9350bd3752a7f8aa113
 
     function matriz_valoresA($cantidad,$vertice_1,$vertice_2,$aristas)
     {
@@ -85,7 +102,24 @@
         mostrar_matriz($matriz,$cantidad);
 
     }
+    function matriz_valoresA_r($cantidad,$vertice_1,$vertice_2,$aristas)
+    {
+        $matriz = crearmatriz($cantidad);
+        //print(count($vertice_1));
+        for($i=0;$i<count($vertice_1);$i++)
+        {
+            if($matriz[$vertice_1[$i]][$vertice_2[$i]] == 0 && $matriz[$vertice_2[$i]][$vertice_1[$i]] == 0)            // crea matriz con valor de las aristas, sirve ademas para ver camino optimo
+            {
+                $matriz[$vertice_1[$i]][$vertice_2[$i]]=$aristas[$i];
+                $matriz[$vertice_2[$i]][$vertice_1[$i]]=$aristas[$i];
+            }
+        }
+    
+        return $matriz;
 
+    }
+    
+    
     function mostrar_matriz($matriz,$cantidad)
     {
         echo('<pre>');
@@ -388,5 +422,39 @@
             print($euler[$i]);
         }
     }
+
+
+    function caminos($matriz,$A,$cantidad)
+    {   
+        $caminos_cortos = array();
+        for($i=0;$i<$cantidad;$i++)
+        {
+            $camino = array();
+            if($A == $i)
+            {
+                $camino["distancia"] = 0;
+            }
+            else
+            {
+                if($matriz[$A][$i]==0)
+                {
+                    $camino["distancia"] = 99999999999999;
+                }
+                if($matriz[$A][$i]==0)
+                {
+
+                }
+            
+            }
+
+        }
+
+    }
+
+
+
+function Get_valor_vertice(){
+
+}
     
 ?>

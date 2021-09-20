@@ -127,6 +127,18 @@ function Get_Vertice_B(){
     return $data;
 
 }
+function Get_Peso(){
+    $aristas = getaristas(); 
+    $tamano = sizeof($aristas);
+    $data = array();
+    for($i=0;$i<$tamano;$i++){ 
+    
+        array_push($data,$aristas[$i][2]);
+
+    }
+    return $data;
+
+}
 
 
 function Get_tamano(){
