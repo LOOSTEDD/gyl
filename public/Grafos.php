@@ -458,11 +458,6 @@
         }
     }
 
-
-
-
-
-
     function hamiltoniano()
     {
         $matriz=matriz_caminos();
@@ -472,15 +467,19 @@
         $i=0;
         $j=0;
         $aux=array();
-        while($contador!=$cantidad)
+        while($contador<$cantidad+1)
         {
+            //print("hola");
+            
+            //print_r($hamilton);
+            //print($contador);
             $conexiones=buscar_conexion($matriz,$i,$cantidad);
             if($i==0 && !in_array($i,$hamilton))
             {
                 array_push($hamilton,$i);
                 $contador++;
             }
-            if(!in_array($conexiones[$j],$hamilton) || ($conexiones[$j]==$hamilton[0] && $contador==$cantidad-1))
+            if(!in_array($conexiones[$j],$hamilton) || ($conexiones[$j]==$hamilton[0] && $contador==$cantidad))
             {
                 $j=0;
                 array_push($aux,$i);
@@ -500,22 +499,42 @@
                     $j--;
                     if($contador_aux==0)
                     {
-
+                        array_pop($hamilton);
+                        $contador--;
+                        $i=array_pop($aux);
+                    }
+                    if($j==0)
+                    {
+                        array_pop($hamilton);
+                        $contador--;
+                        $i=array_pop($aux);
+                        $j++;
+                    }
+                    if($i==0 && $j==0)
+                    {
+                        print("Su grafo no es hamiltoniano. ");
                     }
                     $contador_aux++;
                 }
-
             }
         }
-        if($hamilton[0]==$hamilton[$cantidad-1])
+
+        if($hamilton[0]==$hamilton[$cantidad])
         {
-            print("Es hamiltoniano");
+            print("Su grafo es hamiltoniano. ");
+            echo ('<br/>');
+            print("Su camino hamlintoniano es: ");
             for($i=0;$i<count($hamilton);$i++)
             {
                 if($i>0)
                 print(", ");
                 print($hamilton[$i]);
             }
-        }   
+            print(". ");
+        }
+        else
+        {
+            print("Su grafo no es hamiltoniano. ");
+        }
     }
 ?>

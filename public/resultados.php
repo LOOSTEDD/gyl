@@ -200,7 +200,7 @@
 									$eu=euleriano();
 									if($eu == true)
 									{
-										print_r('Su matriz es euleriana.');
+										print_r('Su grafo es euleriano.');
 										print_r("\n");
 										echo '<li/>';
 										print_r('Su camino euleriano es: ');
@@ -209,7 +209,7 @@
 									}
 									else
 									{
-										print_r('Su matriz no es euleriana.');
+										print_r('Su grafo no es euleriana.');
 									}
 								?>
 							</li>
