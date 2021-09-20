@@ -119,7 +119,6 @@
         $contador=0;
         $i=0;
         $grafo=array();
-        $total=conexiones($matriz,$cantidad);
 
         while($i<$cantidad)
         {
@@ -468,7 +467,7 @@ print_r(caminos(1,4));
         $contador=0;
         $i=0;
         $j=0;
-        $aux=0;
+        $aux=array();
         while($contador!=$cantidad)
         {
             $conexiones=buscar_conexion($matriz,$i,$cantidad);
@@ -480,22 +479,28 @@ print_r(caminos(1,4));
             if(!in_array($conexiones[$j],$hamilton) || ($conexiones[$j]==$hamilton[0] && $contador==$cantidad-1))
             {
                 $j=0;
-                $aux=$i;
+                array_push($aux,$i);
                 $i=$conexiones[$j];
                 array_push($hamilton,$i);
                 $contador++;
             }
             else
             {
-                array_pop($hamilton);
-                $contador--;
-                $i=$aux;
                 $j++;
             }
-            if($j>=count($conexiones))
+            if($j>=count($conexiones) && $i!=0)
             {
-                print("No es hamiltoniano");
-                break;
+                $contador_aux=0;
+                while($j>=count(buscar_conexion($matriz,$i,$cantidad)) && $j>0)
+                {
+                    $j--;
+                    if($contador_aux==0)
+                    {
+
+                    }
+                    $contador_aux++;
+                }
+
             }
         }
         if($hamilton[0]==$hamilton[$cantidad-1])
