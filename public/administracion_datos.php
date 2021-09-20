@@ -22,6 +22,17 @@
         
             return $datos;
     }
+    function lectura_C (){
+        $fp = fopen ("nodos.txt","r");
+        $i = 0 ;
+        $datos = array();
+        while (!feof($fp)){
+            $linea = fgets($fp);
+            array_push($datos,$linea);
+        }
+        
+            return $datos;
+    }
 
     function Isdireccional(){
         $data = lectura_A();
@@ -103,56 +114,80 @@
 
     
 
-function Get_Vertice_A(){
-    $aristas = getaristas(); 
-    $tamano = sizeof($aristas);
-    $data = array();
-    for($i=0;$i<$tamano;$i++){ 
-        array_push($data,$aristas[$i][0]);
+    function Get_Vertice_A(){
+        $aristas = getaristas(); 
+        $tamano = sizeof($aristas);
+        $data = array();
+        for($i=0;$i<$tamano;$i++){ 
+            array_push($data,$aristas[$i][0]);
+
+        }
+        return $data;
 
     }
-    return $data;
 
-}
-
-function Get_Vertice_B(){
-    $aristas = getaristas(); 
-    $tamano = sizeof($aristas);
-    $data = array();
-    for($i=0;$i<$tamano;$i++){ 
+    function Get_Vertice_B(){
+        $aristas = getaristas(); 
+        $tamano = sizeof($aristas);
+        $data = array();
+        for($i=0;$i<$tamano;$i++){ 
     
-        array_push($data,$aristas[$i][1]);
+            array_push($data,$aristas[$i][1]);
 
-    }
-    return $data;
+        }
+        return $data;
 
 }
-function Get_Peso(){
-    $aristas = getaristas(); 
-    $tamano = sizeof($aristas);
-    $data = array();
-    for($i=0;$i<$tamano;$i++){ 
+    function Get_Peso(){
+        $aristas = getaristas(); 
+        $tamano = sizeof($aristas);
+        $data = array();
+        for($i=0;$i<$tamano;$i++){ 
     
-        array_push($data,$aristas[$i][2]);
+            array_push($data,$aristas[$i][2]);
+
+         }
+        return $data;
+
+}
+
+
+    function Get_tamano(){
+        $aristas = getaristas(); 
+        $tamano = sizeof($aristas);
+        return $tamano;
 
     }
-    return $data;
-
-}
 
 
-function Get_tamano(){
-    $aristas = getaristas(); 
-    $tamano = sizeof($aristas);
-    return $tamano;
+    function Get_Nodos()
+    {
+        $data  = lectura_C();
+        $nodos= array();
+        $cadena = "";
+        $i=0;
+        while($data[0][$i] != ',')
+        {
+           
+            $cadena=$cadena.$data[0][$i];
+            $i++;
+        }
+        array_push($nodos,intval($cadena));
+        $cadenaB="";
+        $i++;
+        while($i<strlen($data[0]))
+        {
+        
+            $cadenaB=$cadenaB.$data[0][$i];
+            $i++;
+        }
+        array_push($nodos,intval($cadenaB));
+        return $nodos;
 
-}
+    }
 
 
 
-
-
-
-
+ print_r(Get_Nodos());
 
 ?>
