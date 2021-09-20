@@ -578,12 +578,66 @@
         $matriz = matriz_caminos();
         $matrizV= matriz_valoresA();
         $cantidad = Cantidaddenodos();
-
+        $vertices_1 = array();
+        $vertice_2 = array();
+        $contador=0;
+        $aux=array();
+        
         do 
         {
             $camino=caminos_r($A,$B,$matriz,$matrizV,$cantidad);
+            $string=$camino[0];
+            $restar=$camino[1];
+            if(!$camino)
+            {
+                for($i=0;$i<count($string);$i++)
+                {
+                    if($string!=",")
+                        array_push($aux,$string[$i]);
+                    elseif($string=="," && $i==0)
+                    {
+                        $num=0;
+                        for($j=0;$j<$aux;$j++)
+                        {
+                            $num = $num*10 + intval($aux[$j]);
+                        }
+                        array_push($vertices_1,$num);
+                    }
+                    elseif($string=="," && ($i!=0 && $i<count($string)-1))
+                    {
+                        $num=0;
+                        for($j=0;$j<$aux;$j++)
+                        {
+                            $num = $num*10 + intval($aux[$j]);
+                        }
+                        array_push($vertices_1,$num);
+                        array_push($vertice_2,$num);
+                    }
+                    elseif($string=="," && $i==count($string)-1)
+                    {
+                        $num=0;
+                        for($j=0;$j<$aux;$j++)
+                        {
+                            $num = $num*10 + intval($aux[$j]);
+                        }
+                        array_push($vertice_2,$num);
+                    }
+                }
+                for($j=0;$j<count($vertices_1);$j++)
+                {
+                    $matriz[$vertices_1[$j]][$vertice_2[$j]]=$matriz[$vertices_1[$j]][$vertice_2[$j]]-intval($restar);
+                    $contador=$contador+intval($restar);
+                }
+            }
+            else
+            {
+                print("No existe camino entre los nodos que ingreso");
+            }
 
-        } while (!$camino);
+        }while(!$camino);
+
+        print("El flujo maximo entre los nodos ingresados es: ");
+        print($contador);
     }
 
     function caminos_r($A,$B,$matriz,$matrizV,$cantidad)
@@ -613,8 +667,6 @@
                 
                 }
             }
-
-
         }
         $aux = $distancia;
         unset($aux[$A]);
