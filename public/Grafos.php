@@ -374,7 +374,6 @@
         }
     }
 
-<<<<<<< HEAD
 
     function caminos($A,$B)
     {   
@@ -405,48 +404,8 @@
                     $antecesor[$i] = $A;
                 
                 }
-=======
-    function hamiltoniano()
-    {
-        $matriz=matriz_caminos();
-        $cantidad=Cantidaddenodos();
-        $hamilton=array();
-        $contador=0;
-        $i=0;
-        $j=0;
-        $aux=0;
-        while($contador!=$cantidad)
-        {
-            $conexiones=buscar_conexion($matriz,$i,$cantidad);
-            if($i==0 && !in_array($i,$hamilton))
-            {
-                array_push($hamilton,$i);
-                $contador++;
->>>>>>> 7352ffa6b071c02650e57f91ceffaca33d97550f
             }
-            if(!in_array($conexiones[$j],$hamilton) || ($conexiones[$j]==$hamilton[0] && $contador==$cantidad-1))
-            {
-                $j=0;
-                $aux=$i;
-                $i=$conexiones[$j];
-                array_push($hamilton,$i);
-                $contador++;
-            }
-            else
-            {
-                array_pop($hamilton);
-                $contador--;
-                $i=$aux;
-                $j++;
-            }
-            if($j>=count($conexiones))
-            {
-                print("No es hamiltoniano");
-                break;
-            }
-        }
 
-<<<<<<< HEAD
 
         }
         $aux = $distancia;
@@ -488,12 +447,57 @@
                 $optimo["valor"] = $distancia[$B];
                 return $optimo;
         }
-
+    
         else
         {
-            echo "No se ha encontrado camino ";
+            echo "No se ha encontrado camino";
             return 0;
-=======
+        }
+    }
+
+
+
+
+
+print_r(caminos(1,4));
+    function hamiltoniano()
+    {
+        $matriz=matriz_caminos();
+        $cantidad=Cantidaddenodos();
+        $hamilton=array();
+        $contador=0;
+        $i=0;
+        $j=0;
+        $aux=0;
+        while($contador!=$cantidad)
+        {
+            $conexiones=buscar_conexion($matriz,$i,$cantidad);
+            if($i==0 && !in_array($i,$hamilton))
+            {
+                array_push($hamilton,$i);
+                $contador++;
+            }
+            if(!in_array($conexiones[$j],$hamilton) || ($conexiones[$j]==$hamilton[0] && $contador==$cantidad-1))
+            {
+                $j=0;
+                $aux=$i;
+                $i=$conexiones[$j];
+                array_push($hamilton,$i);
+                $contador++;
+            }
+            else
+            {
+                array_pop($hamilton);
+                $contador--;
+                $i=$aux;
+                $j++;
+            }
+            if($j>=count($conexiones))
+            {
+                print("No es hamiltoniano");
+                break;
+            }
+        }
         if($hamilton[0]==$hamilton[$cantidad-1])
         {
             print("Es hamiltoniano");
@@ -503,9 +507,6 @@
                 print(", ");
                 print($hamilton[$i]);
             }
->>>>>>> 7352ffa6b071c02650e57f91ceffaca33d97550f
-        }
+        }   
     }
-print_r(caminos(1,4));
-    
 ?>
