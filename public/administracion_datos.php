@@ -1,6 +1,9 @@
 <?php
-   
+   use Illuminate\Foundation\Inspiring;
+   use Illuminate\Support\Facades\Artisan;
+
     function lectura_A (){
+        log::info("Lectura de archivo indicaciones.txt");
         $fp = fopen ("indicaciones.txt","r");
         $i = 0 ;
         $datos = array();
@@ -12,6 +15,7 @@
             return $datos;
     }
     function lectura_B (){
+        log::info("Lectura de archivo matriz.txt");
         $fp = fopen ("matriz.txt","r");
         $i = 0 ;
         $datos = array();
@@ -23,6 +27,7 @@
             return $datos;
     }
     function lectura_C (){
+        log::info("Lectura de archivo nodos.txt");
         $fp = fopen ("nodos.txt","r");
         $i = 0 ;
         $datos = array();
@@ -38,11 +43,13 @@
         $data = lectura_A();
 
         if(strlen($data[0])> 14){
+            log::info("El grafo es direccional");
             
             return true;
         }
        else
         {
+            log::info("El grafo no es direccional");
             
             return false;
         }
@@ -188,6 +195,9 @@
 
 
 
- print_r(Get_Nodos());
+ 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 338dd8aff1791d50ed6c349c5dbac43e2ef185e5
 ?>

@@ -1,5 +1,6 @@
 <?php
-    require("administracion_datos.php");
+    use Illuminate\Foundation\Inspiring;
+    use Illuminate\Support\Facades\Artisan;
 
     function crearmatriz($cantidad)
     {
@@ -18,12 +19,23 @@
         return $matriz;
 
     }
+    function Nodo_exist($vertices,$cantidad){
+        for($i=0;$i<sizeof($vertices);$i++)
+        {
+            if($vertices[$i]>$cantidad)
+            {
+                log::error("El nodo".$vertices[$i]."no existe");
+            }
+        }
+    }
 
     function matriz_caminos()
     {
         $cantidad=Cantidaddenodos();
         $vertice_1=Get_Vertice_A();
+        Nodo_exist($vertice_1,$cantidad);
         $vertice_2=Get_Vertice_B();
+        Nodo_exist($vertice_2,$cantidad);
         $isdireccional=Isdireccional();
         $matriz=crearmatriz($cantidad);
 
@@ -39,6 +51,7 @@
                 $matriz[$vertice_1[$i]][$vertice_2[$i]]++;
             }
         }
+        log::info("Matriz de caminos creada correctamente");
         return $matriz;
     }
 
@@ -59,6 +72,7 @@
                 $matriz[$vertice_2[$i]][$vertice_1[$i]]=$aristas[$i];
             }
         }
+        log::info("Matriz de valores creada correctamente");
         return $matriz;
     }
     
@@ -112,6 +126,7 @@
 
             if($contador==$cantidad-1 || $contador==$cantidad)
             {
+                log::info("El grafo es conexo");
                 return true;
             }
         }
@@ -448,15 +463,20 @@
                  
                 $camino = $camino.",".$B;
                 
-                $optimo["camino"]= $camino;
-                $optimo["valor"] = $distancia[$B];
+                $optimo[0]= $camino;
+                $optimo[1] = $distancia[$B];
                 return $optimo;
         }
     
         else
         {
-            echo "No se ha encontrado camino";
+<<<<<<< HEAD
+            log::info("No se ha encontrado un camino optimo");
+            log::error("error en el camino mas optimo");
             return 0;
+=======
+            return false;
+>>>>>>> 338dd8aff1791d50ed6c349c5dbac43e2ef185e5
         }
     }
 
@@ -524,6 +544,7 @@
         if($hamilton[0]==$hamilton[$cantidad])
         {
             print("Su grafo es hamiltoniano. ");
+            log::info("Grafo es hamiltoniano");
             echo ('<br/>');
             echo '<li/>';
             print("Su camino hamiltoniano es: ");
@@ -537,9 +558,9 @@
         }
         else
         {
+            log::info("Grafo no es hamiltoneano");
             print("Su grafo no es hamiltoniano. ");
         }
     }
 
-    print_r(caminos());
 ?>

@@ -224,9 +224,10 @@
 								
 						</ul>
 						<form action="resultados2.php" mclass="#fh5co-started" method="POST">
-							<p>	
-								Nodos: <input type="number" min="0" name="nodo1"> <input type="number" min="0" name="nodo2">
-							</p>
+							<p>	Nodos para camino mas corto</p>
+							<p><input type="number" min="0" name="nodo1"> <input type="number" min="0" name="nodo2"></p>
+							<p>Nodos para flujo maximo</p>
+							<p><input type="number" min="0" name="nodo3"> <input type="number" min="0" name="nodo4"></p>
 							<input type="submit" value="Ingresar">
 						</form>
                     </p>
