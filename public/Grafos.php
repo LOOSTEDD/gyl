@@ -378,8 +378,10 @@
         }
     }
 
-    function caminos($A,$B)
+    function caminos()
     {   
+        $A = Get_Nodos()[0];
+        $B = Get_Nodos()[1];
         $matriz = matriz_caminos();
         $matrizV= matriz_valoresA();
         $cantidad = Cantidaddenodos();
@@ -538,4 +540,6 @@
             print("Su grafo no es hamiltoniano. ");
         }
     }
+
+    print_r(caminos());
 ?>
