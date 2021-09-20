@@ -471,7 +471,7 @@
         {
             //print("hola");
             
-            //print_r($hamilton);
+            //
             //print($contador);
             $conexiones=buscar_conexion($matriz,$i,$cantidad);
             if($i==0 && !in_array($i,$hamilton))
@@ -481,6 +481,10 @@
             }
             if(!in_array($conexiones[$j],$hamilton) || ($conexiones[$j]==$hamilton[0] && $contador==$cantidad))
             {
+<<<<<<< HEAD
+=======
+               
+>>>>>>> ffe0483988808f59a0070e6c6109c1b22e844729
                 array_push($aux,$i);
                 $i=$conexiones[$j];
                 array_push($hamilton,$i);
@@ -518,12 +522,13 @@
                 }
             }
         }
-
+        
         if($hamilton[0]==$hamilton[$cantidad])
         {
             print("Su grafo es hamiltoniano. ");
             echo ('<br/>');
-            print("Su camino hamlintoniano es: ");
+            echo '<li/>';
+            print("Su camino hamiltoniano es: ");
             for($i=0;$i<count($hamilton);$i++)
             {
                 if($i>0)

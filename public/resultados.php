@@ -213,8 +213,22 @@
 									}
 								?>
 							</li>
+							<li> 
+									<?php
+										hamiltoniano();
+									?>
+							</li>
+							<!--<li>
 
+							</li>-->
+								
 						</ul>
+						<form action="resultados2.php" mclass="#fh5co-started" method="POST">
+							<p>	
+								Nodos: <input type="number" min="0" name="nodo1"> <input type="number" min="0" name="nodo2">
+							</p>
+							<input type="submit" value="Ingresar">
+						</form>
                     </p>
 				<div>
 			</div>
