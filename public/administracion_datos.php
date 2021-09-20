@@ -26,7 +26,7 @@
     function Isdireccional(){
         $data = lectura_A();
 
-        if(strlen($data[0])> 13){
+        if(strlen($data[0])> 14){
             
             return true;
         }
@@ -38,18 +38,18 @@
     }
 
 
-    function Cantidaddenodos(){
+    function Cantidaddenodos()
+    {
         $data = lectura_A();
         $numbers= "";
-       $caracter = (strlen($data[1]))-1; 
-       for($i=7;$i<$caracter;$i++){
+        $caracter = (strlen($data[1]))-1; 
+        for($i=7;$i<$caracter;$i++)
+        {
            $numbers= $numbers.$data[1][$i];
-
-
-    }
+        }
     
-    $IVAL = intval($numbers);
-    return $IVAL;
+        $IVAL = intval($numbers);
+        return $IVAL;
     }
 
     function getaristas(){

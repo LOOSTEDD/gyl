@@ -19,52 +19,13 @@
 
     }
 
-    function matriz_caminos($cantidad,$vertice_1,$vertice_2,$isdireccional)
+    function matriz_caminos()
     {
-        $matriz=crearmatriz($cantidad);
-
-        for($i=0;$i<count($vertice_1);$i++)
-        {
-            if($isdireccional)
-            {
-                $matriz[$vertice_1[$i]][$vertice_2[$i]]++;
-            }
-            else
-            {
-                $matriz[$vertice_2[$i]][$vertice_1[$i]]++;                          // Crea la matriz camino y muestra si es conexa
-                $matriz[$vertice_1[$i]][$vertice_2[$i]]++;
-            }
-        }
-        echo('<br/>');
-        print("Matriz de camino");
-        mostrar_matriz($matriz,$cantidad);
-        
-        if(matriz_conexa($matriz,$cantidad))
-        {
-            print("Es una matriz conexa");
-        }
-        else
-        {
-            print("No es una matriz conexa");
-        }
-        echo('<br/>');
-        if(euleriano($matriz,$cantidad,$isdireccional))
-        {
-            print("Es euleriano");
-            echo('<br/>');
-            print("Camino euleriano: ");
-            camino_euler($matriz,$cantidad);
-        }
-        else
-        {
-            print("No es eulerinano");
-
-        }
-        
-    }
-    function matriz_caminos_r($cantidad,$vertice_1,$vertice_2,$isdireccional)
-    {
-
+        $cantidad=Cantidaddenodos();
+        $vertice_1=Get_Vertice_A();
+        $vertice_2=Get_Vertice_B();
+        $isdireccional=Isdireccional();
+        print_r($isdireccional);
         $matriz=crearmatriz($cantidad);
 
         for($i=0;$i<count($vertice_1);$i++)
@@ -80,14 +41,15 @@
             }
         }
         return $matriz;
-        
-        
     }
 
-    // matriz_caminos(5,[0,1,1],[2,4,3],false); MATRIZ PRUEBA
 
-    function matriz_valoresA($cantidad,$vertice_1,$vertice_2,$aristas)
+    function matriz_valoresA()
     {
+        $cantidad=Cantidaddenodos();
+        $vertice_1=Get_Vertice_A();
+        $vertice_2=Get_Vertice_B();
+        $aristas=Get_Peso();
         $matriz = crearmatriz($cantidad);
         //print(count($vertice_1));
         for($i=0;$i<count($vertice_1);$i++)
@@ -98,27 +60,8 @@
                 $matriz[$vertice_2[$i]][$vertice_1[$i]]=$aristas[$i];
             }
         }
-        print("Matriz con valores de la arista");
-        mostrar_matriz($matriz,$cantidad);
-
-    }
-    function matriz_valoresA_r($cantidad,$vertice_1,$vertice_2,$aristas)
-    {
-        $matriz = crearmatriz($cantidad);
-        //print(count($vertice_1));
-        for($i=0;$i<count($vertice_1);$i++)
-        {
-            if($matriz[$vertice_1[$i]][$vertice_2[$i]] == 0 && $matriz[$vertice_2[$i]][$vertice_1[$i]] == 0)            // crea matriz con valor de las aristas, sirve ademas para ver camino optimo
-            {
-                $matriz[$vertice_1[$i]][$vertice_2[$i]]=$aristas[$i];
-                $matriz[$vertice_2[$i]][$vertice_1[$i]]=$aristas[$i];
-            }
-        }
-    
         return $matriz;
-
     }
-    
     
     function mostrar_matriz($matriz,$cantidad)
     {
@@ -150,8 +93,11 @@
     
     //print_r (conexiones(matriz_caminos(Cantidaddenodos(),Get_Vertice_A(),Get_Vertice_B(),Isdireccional()),Cantidaddenodos()));
     
-    function matriz_conexa($matriz,$cantidad)                           //Muestra si una matriz es conexa NO TOCAR POR NADA DEL MUNDO
+    function matriz_conexa()                           //Muestra si una matriz es conexa NO TOCAR POR NADA DEL MUNDO
     {
+        $matriz=matriz_caminos();
+        $cantidad=Cantidaddenodos();
+
         for($i=0;$i<$cantidad;$i++)
         {
             $contador=0;
@@ -321,8 +267,11 @@
         return $conexiones;
     }
 
-    function euleriano($matriz,$cantidad,$isdireccional)
+    function euleriano()
     {
+        $matriz=matriz_caminos();
+        $cantidad=Cantidaddenodos();
+        $isdireccional=Isdireccional();
         $contador=0;
 
         if(matriz_conexa($matriz,$cantidad))
@@ -379,8 +328,10 @@
         return $conexiones;
     }
 
-    function camino_euler($matriz,$cantidad)
+    function camino_euler()
     {
+        $matriz=matriz_caminos();
+        $cantidad=Cantidaddenodos();
         $euler=array();
         $verificador=0;
         $i=0;   //recorrer matriz
@@ -424,41 +375,85 @@
     }
 
 
-    function caminos($A)
+    function caminos($A,$B)
     {   
         $matriz = matriz_caminos();
         $matrizV= matriz_valoresA();
         $cantidad = Cantidaddenodos();
-        $caminos_cortos = array();
+        $caminos= array();
+        $antecesor = array();
+        $distancia = array();
+        $optimo = array();
         for($i=0;$i<$cantidad;$i++)
         {
-            $camino = array();
             if($A == $i)
             {
-                $camino["distancia"] = 0;
+                array_push($distancia,0);
             }
             else
             {
-                if($matriz[$A][$i]==0)
+                if($matriz[$A][$i]== 0)
                 {
-                    $camino["distancia"] = 99999999999999;
-                }
-                if($matriz[$A][$i]!=0)
-                {   
-                    $camino["distancia"]= $matrizV[$A][$i];
-                    $camino["antecesor"]= $A;
-
+                    array_push($distancia,9999999999999999999999999999999);
 
                 }
-            
+                if($matriz[$A][$i] > 0)
+                { 
+                    
+                    array_push($distancia,$matrizV[$A][$i]);
+                    $antecesor[$i] = $A;
+                
+                }
             }
 
+
+        }
+        $aux = $distancia;
+        unset($aux[$A]);
+
+        while(!empty($aux))
+        {   
+            $menor =array_search(min($aux),$aux,false);
+
+            
+            unset($aux[$menor]);
+            $sucesores = buscar_conexion($matriz,$menor,$cantidad);
+            
+
+            for($i=0;$i<sizeof($sucesores);$i++)
+            {   
+                if($distancia[$sucesores[$i]]>$distancia[$menor] + $matrizV[$menor][$sucesores[$i]]) 
+                {
+                    $distancia[$sucesores[$i]]= ($distancia[$menor] + $matrizV[$menor][$sucesores[$i]]);
+                    $antecesor[$sucesores[$i]] = $menor;
+
+                }
+
+            }
         }
 
+            $camino = $A;
+        if($antecesor[$B])
+        {
+            while($antecesor[$B] != $A)
+                {
+                        $camino = $camino.",".$antecesor[$B];
+                        $antecesor[$B] = $antecesor[$antecesor[$B]];
+                }
+                 
+                $camino = $camino.",".$B;
+                
+                $optimo["camino"]= $camino;
+                $optimo["valor"] = $distancia[$B];
+                return $optimo;
+        }
+
+        else
+        {
+            echo "No se ha encontrado camino ";
+            return 0;
+        }
     }
-
-
-
-
+print_r(caminos(1,4));
     
 ?>
