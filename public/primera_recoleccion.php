@@ -18,7 +18,7 @@ else
    	fclose($guardar);
 ?>
 <!DOCTYPE HTML>
-<html>
+<html lang="es">
 	<head>
 
 	<!--TRABAJO 1-->	
@@ -44,7 +44,7 @@ else
 	//////////////////////////////////////////////////////
 	 -->
 
-  	<!-- Facebook and Twitter integration -->
+  	
 	<meta property="og:title" content=""/>
 	<meta property="og:image" content=""/>
 	<meta property="og:url" content=""/>
@@ -55,7 +55,7 @@ else
 	<meta name="twitter:url" content="" />
 	<meta name="twitter:card" content="" />
 
-	<!-- <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">	 -->
+	
 	<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
 	
 	<!-- Animate.css -->
@@ -165,7 +165,7 @@ else
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 					<h2>Trabajo 1</h2>
 					<p>En la siguiente pagina se podra observar el desarrollo de la primera actividad a evaluar, la cual posee las siguientes exigencias:
-						<ul align = "justify">
+						<ul caption = "justify">
 							<li>Lograr ingresar un grafo a la aplicación</li>
 							<li>Mostrar matriz de caminos e indicar si el grafo es o no conexo.</li>
 							<li>Mostrar el camino más corto para dos nodos a elección del usuario, mostrando la duración
@@ -182,11 +182,11 @@ else
 			<div class="row animate-box">	
 				<div class="col-md-6 col-md-offset-3 text-center heading-section">
 					<h3>Demostracion</h3>
-					<p align = "justify">Ingrese sus valores:</p>
+					<p caption = "justify">Ingrese sus valores:</p>
 					<form action="recoleccion_de_datos.php" mclass="#fh5co-started" method="POST">
 					<p>	
 						Vertices: <input type="number" min="0" name="vertice1"> <input type="number" min="0" name="vertice2">
-						<p align = "text-center">Valor arista:<input type="number" min="0" name="varista"></p>
+						<p caption = "text-center">Valor arista:<input type="number" min="0" name="varista"></p>
 						<input type="submit" value="Ingresar">
 					</p>
 					</form>

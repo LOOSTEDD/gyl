@@ -8,7 +8,7 @@
 ?>
 
 <!DOCTYPE HTML>
-<html>
+<html lang="es">
 	<head>
 
 	<!--TRABAJO 1-->	
@@ -20,21 +20,9 @@
 	<meta name="description" content="Free HTML5 Website Template by freehtml5.co" />
 	<meta name="author" content="freehtml5.co" />
 
-	<!-- 
-	//////////////////////////////////////////////////////
+	
 
-	FREE HTML5 TEMPLATE 
-	DESIGNED & DEVELOPED by FreeHTML5.co
-		
-	Website: 		http://freehtml5.co/
-	Email: 			info@freehtml5.co
-	Twitter: 		http://twitter.com/fh5co
-	Facebook: 		https://www.facebook.com/fh5co
-
-	//////////////////////////////////////////////////////
-	 -->
-
-  	<!-- Facebook and Twitter integration -->
+  	
 	<meta property="og:title" content=""/>
 	<meta property="og:image" content=""/>
 	<meta property="og:url" content=""/>
@@ -45,7 +33,7 @@
 	<meta name="twitter:url" content="" />
 	<meta name="twitter:card" content="" />
 
-	<!-- <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">	 -->
+	
 	<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
 	
 	<!-- Animate.css -->
@@ -154,7 +142,7 @@
 				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 					<h2>Trabajo 1</h2>
 					<p>En la siguiente pagina se podra observar el desarrollo de la primera actividad a evaluar, la cual posee las siguientes exigencias:
-						<ul align = "justify">
+						<ul caption = "justify">
 							<li>Lograr ingresar un grafo a la aplicación</li>
 							<li>Mostrar matriz de caminos e indicar si el grafo es o no conexo.</li>
 							<li>Mostrar el camino más corto para dos nodos a elección del usuario, mostrando la duración
@@ -171,7 +159,7 @@
 			<div class="row animate-box">	
 				<div class="col-md-6 col-md-offset-3 text-center heading-section">
 					<h3>Demostracion</h3>
-					<p align = "justify">Ingrese sus datos</p>
+					<p caption = "justify">Ingrese sus datos</p>
 					<form action="primera_recoleccion.php" mclass="#fh5co-started" method="POST">
 						<p>	Numero de nodos: <input type="number" min="0" name="nodos"> </p>
 						<p align = "text-center">¿Es direcional?:<input type="checkbox" name="direccional"></p>

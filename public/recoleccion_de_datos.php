@@ -13,7 +13,8 @@
     fclose($guardar);
 ?>
 <!DOCTYPE HTML>
-<html>
+<html lang="es">
+	
 	<head>
 
 	<!--TRABAJO 1-->	

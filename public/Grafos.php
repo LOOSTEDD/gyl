@@ -65,7 +65,7 @@
         $vertice_2=Get_Vertice_B();
         $aristas=Get_Peso();
         $matriz = crearmatriz($cantidad);
-        //print(count($vertice_1));
+        
         for($i=0;$i<count($vertice_1);$i++)
         {
             if($matriz[$vertice_1[$i]][$vertice_2[$i]] == 0 && $matriz[$vertice_2[$i]][$vertice_1[$i]] == 0)            // crea matriz con valor de las aristas, sirve ademas para ver camino optimo
@@ -81,7 +81,7 @@
     function mostrar_matriz($matriz)
     {
         $cantidad=Cantidaddenodos();
-        echo("\n");
+        echo"\n";
         for($i=0;$i<$cantidad;$i++)
         {
             if($i==0)
@@ -91,7 +91,7 @@
             echo "[$i]&nbsp";
         }
                                                 //imprime matriz seleccionada
-        echo('<br/>');
+        echo'<br/>';
         
         for($i=0;$i<$cantidad;$i++)
         {
@@ -102,12 +102,12 @@
                 print_r($matriz[$i][$j]);
                 echo "&nbsp&nbsp";
             }
-            echo('<br/>');
+            echo'<br/>';
         }
-        echo('<br/>');
+        echo'<br/>';
     }
     
-    //print_r (conexiones(matriz_caminos(Cantidaddenodos(),Get_Vertice_A(),Get_Vertice_B(),Isdireccional()),Cantidaddenodos()));
+    
     
     function matriz_conexa()                           //Muestra si una matriz es conexa NO TOCAR POR NADA DEL MUNDO
     {
@@ -218,44 +218,7 @@
     
     
 
-    /*function arreglo_simple($cantidad)
-    {
-        $arreglo = array();
-        for($i=0;$i<$cantidad;$i++) 
-        {
-            array_push($arreglo,$i);
-
-        }
-        return $arreglo;
-    }
-
-    function quitar_array($array,$valor)
-    {
-        $x=0;
-
-        while($valor!=$array[$x])
-        {
-            $x++;
-        }
-        for($x;$x<sizeof($array)-1;$x++)
-        {
-            $array[$x]=$array[$x+1];
-        }
-        unset($array[sizeof($array)-1]);
-        return $array;
-    }
-
-    function camino($matriz,$A,$B,$cantidad)
-    { 
-        $conexiones = conexiones($matriz,$cantidad);
-        $arreglo= array();
-        for($i=0;$i<$cantidad;$i++)
-        {
-
-        }
-      
-
-    }*/
+    
 
     function conexiones($matriz,$cantidad) 
     {
@@ -471,8 +434,13 @@
         }
         else
         {
+<<<<<<< HEAD
+            log::info("No se ha encontrado un camino optimo");
+            log::error("error en el camino mas optimo");
+=======
             //log::info("No se ha encontrado un camino optimo");
             //log::error("error en el camino mas optimo");
+>>>>>>> d3331f651af0571edc12baec20d7772cbec25fdb
             return 0;
         }
     }
@@ -488,6 +456,10 @@
         $aux=array();
         while($contador<$cantidad+1)
         {
+<<<<<<< HEAD
+            
+=======
+>>>>>>> d3331f651af0571edc12baec20d7772cbec25fdb
             $conexiones=buscar_conexion($matriz,$i,$cantidad);
             if($j>=count($conexiones) && $i==0)
             {
@@ -548,6 +520,14 @@
         }
         if(!empty($hamilton))
         {
+<<<<<<< HEAD
+            print("Su grafo es hamiltoniano. ");
+            log::info("Grafo es hamiltoniano");
+            echo '<br/>';
+            echo '<li/>';
+            print("Su camino hamiltoniano es: ");
+            for($i=0;$i<count($hamilton);$i++)
+=======
             if($hamilton[0]==$hamilton[$cantidad])
             {
                 print("Su grafo es hamiltoniano. ");
@@ -680,6 +660,7 @@
             $sucesores = buscar_conexion($matriz,$menor,$cantidad);
             
             for($i=0;$i<sizeof($sucesores);$i++)
+>>>>>>> d3331f651af0571edc12baec20d7772cbec25fdb
             {
                 if($distancia[$sucesores[$i]]>$distancia[$menor]) 
                 {

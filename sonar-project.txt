@@ -1,0 +1,4 @@
+sonar.projectKey=TrabajoGyL
+sonar.projectName=TrabajoGyL
+sonar.Version=2.0
+sonar.sources=./
