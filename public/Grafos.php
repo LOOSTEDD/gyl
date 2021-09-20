@@ -1,4 +1,5 @@
 <?php
+    require("administracion_datos.php");
     use Illuminate\Foundation\Inspiring;
     use Illuminate\Support\Facades\Artisan;
 
@@ -19,7 +20,8 @@
         return $matriz;
 
     }
-    function Nodo_exist($vertices,$cantidad){
+    /*function Nodo_exist($vertices,$cantidad)
+    {
         for($i=0;$i<sizeof($vertices);$i++)
         {
             if($vertices[$i]>$cantidad)
@@ -27,15 +29,15 @@
                 log::error("El nodo".$vertices[$i]."no existe");
             }
         }
-    }
+    }*/
 
     function matriz_caminos()
     {
         $cantidad=Cantidaddenodos();
         $vertice_1=Get_Vertice_A();
-        Nodo_exist($vertice_1,$cantidad);
+        //Nodo_exist($vertice_1,$cantidad);
         $vertice_2=Get_Vertice_B();
-        Nodo_exist($vertice_2,$cantidad);
+        //Nodo_exist($vertice_2,$cantidad);
         $isdireccional=Isdireccional();
         $matriz=crearmatriz($cantidad);
 
@@ -51,7 +53,7 @@
                 $matriz[$vertice_1[$i]][$vertice_2[$i]]++;
             }
         }
-        log::info("Matriz de caminos creada correctamente");
+        //log::info("Matriz de caminos creada correctamente");
         return $matriz;
     }
 
@@ -72,7 +74,7 @@
                 $matriz[$vertice_2[$i]][$vertice_1[$i]]=$aristas[$i];
             }
         }
-        log::info("Matriz de valores creada correctamente");
+        //log::info("Matriz de valores creada correctamente");
         return $matriz;
     }
     
@@ -126,7 +128,7 @@
 
             if($contador==$cantidad-1 || $contador==$cantidad)
             {
-                log::info("El grafo es conexo");
+                //log::info("El grafo es conexo");
                 return true;
             }
         }
@@ -430,11 +432,15 @@
                 $optimo[1] = $distancia[$B];
                 return $optimo;
         }
-    
         else
         {
+<<<<<<< HEAD
             log::info("No se ha encontrado un camino optimo");
             log::error("error en el camino mas optimo");
+=======
+            //log::info("No se ha encontrado un camino optimo");
+            //log::error("error en el camino mas optimo");
+>>>>>>> d3331f651af0571edc12baec20d7772cbec25fdb
             return 0;
         }
     }
@@ -450,14 +456,23 @@
         $aux=array();
         while($contador<$cantidad+1)
         {
+<<<<<<< HEAD
             
+=======
+>>>>>>> d3331f651af0571edc12baec20d7772cbec25fdb
             $conexiones=buscar_conexion($matriz,$i,$cantidad);
-            if($i==0 && !in_array($i,$hamilton))
+            if($j>=count($conexiones) && $i==0)
+            {
+                print("Su grafo no es hamiltoniano. ");
+                array_pop($hamilton);
+                break;
+            }
+            elseif($i==0 && !in_array($i,$hamilton))
             {
                 array_push($hamilton,$i);
                 $contador++;
             }
-            if(!in_array($conexiones[$j],$hamilton) || ($conexiones[$j]==$hamilton[0] && $contador==$cantidad))
+            elseif(!in_array($conexiones[$j],$hamilton) || ($conexiones[$j]==$hamilton[0] && $contador==$cantidad))
             {
                 array_push($aux,$i);
                 $i=$conexiones[$j];
@@ -469,6 +484,7 @@
             {
                 $j++;
             }
+
             if($j>=count($conexiones) && $i!=0)
             {
                 $contador_aux=0;
@@ -495,28 +511,133 @@
                     $contador_aux++;
                 }
             }
+            if($j>=count($conexiones) && $i==0)
+            {
+                print("Su grafo no es hamiltoniano. ");
+                array_pop($hamilton);
+                break;
+            }
         }
-        
-        if($hamilton[0]==$hamilton[$cantidad])
+        if(!empty($hamilton))
         {
+<<<<<<< HEAD
             print("Su grafo es hamiltoniano. ");
             log::info("Grafo es hamiltoniano");
             echo '<br/>';
             echo '<li/>';
             print("Su camino hamiltoniano es: ");
             for($i=0;$i<count($hamilton);$i++)
+=======
+            if($hamilton[0]==$hamilton[$cantidad])
             {
-                if($i>0)
-                print(", ");
-                print($hamilton[$i]);
+                print("Su grafo es hamiltoniano. ");
+                //log::info("Grafo es hamiltoniano");
+                echo ('<br/>');
+                echo '<li/>';
+                print("Su camino hamiltoniano es: ");
+                for($i=0;$i<count($hamilton);$i++)
+                {
+                    if($i>0)
+                    print(", ");
+                    print($hamilton[$i]);
+                }
+                print(". ");
             }
-            print(". ");
-        }
-        else
-        {
-            log::info("Grafo no es hamiltoneano");
-            print("Su grafo no es hamiltoniano. ");
+            else
+            {
+                //log::info("Grafo no es hamiltoneano");
+                print("Su grafo no es hamiltoniano. ");
+            }
         }
     }
 
+    function flujo_maximo()
+    {
+        $A = Get_Nodos_B()[0];
+        $B = Get_Nodos_B()[1];
+        $matriz = matriz_caminos();
+        $matrizV= matriz_valoresA();
+        $cantidad = Cantidaddenodos();
+
+        do 
+        {
+            $camino=caminos_r($A,$B,$matriz,$matrizV,$cantidad);
+
+        } while (!$camino);
+    }
+
+    function caminos_r($A,$B,$matriz,$matrizV,$cantidad)
+    {   
+        $caminos= array();
+        $antecesor = array();
+        $distancia = array();
+        $optimo = array();
+        for($i=0;$i<$cantidad;$i++)
+        {
+            if($A == $i)
+            {
+                array_push($distancia,0);
+            }
+            else
+            {
+                if($matriz[$A][$i]== 0)
+                {
+                    array_push($distancia,9999999999999999999999999999999);
+
+                }
+                if($matriz[$A][$i] > 0)
+                { 
+                    
+                    array_push($distancia,$matrizV[$A][$i]);
+                    $antecesor[$i] = $A;
+                
+                }
+            }
+
+
+        }
+        $aux = $distancia;
+        unset($aux[$A]);
+
+        while(!empty($aux))
+        {   
+            $menor =array_search(min($aux),$aux,false);
+
+            
+            unset($aux[$menor]);
+            $sucesores = buscar_conexion($matriz,$menor,$cantidad);
+            
+            for($i=0;$i<sizeof($sucesores);$i++)
+>>>>>>> d3331f651af0571edc12baec20d7772cbec25fdb
+            {
+                if($distancia[$sucesores[$i]]>$distancia[$menor]) 
+                {
+                    $distancia[$sucesores[$i]]= $distancia[$menor];
+                    $antecesor[$sucesores[$i]] = $menor;
+
+                }
+
+            }
+        }
+
+        $camino = $A;
+        if($antecesor[$B])
+        {
+            while($antecesor[$B] != $A)
+                {
+                        $camino = $camino.",".$antecesor[$B];
+                        $antecesor[$B] = $antecesor[$antecesor[$B]];
+                }
+                 
+                $camino = $camino.",".$B;
+                
+                $optimo[0]= $camino;
+                $optimo[1] = $distancia[$B];
+                return $optimo;
+        }
+        else
+        {
+            return false;
+        }
+    }
 ?>

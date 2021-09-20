@@ -4,7 +4,7 @@
 
     function lectura_A ()
     {
-        log::info("Lectura de archivo indicaciones.txt");
+        //log::info("Lectura de archivo indicaciones.txt");
         $fp = fopen ("indicaciones.txt","r");
         $i = 0 ;
         $datos = array();
@@ -16,7 +16,7 @@
             return $datos;
     }
     function lectura_B (){
-        log::info("Lectura de archivo matriz.txt");
+        //log::info("Lectura de archivo matriz.txt");
         $fp = fopen ("matriz.txt","r");
         $i = 0 ;
         $datos = array();
@@ -28,7 +28,7 @@
             return $datos;
     }
     function lectura_C (){
-        log::info("Lectura de archivo nodos.txt");
+        //log::info("Lectura de archivo nodos.txt");
         $fp = fopen ("nodos.txt","r");
         $i = 0 ;
         $datos = array();
@@ -45,13 +45,13 @@
 
         if(strlen($data[0])> 14)
         {
-            log::info("El grafo es direccional");
+            //log::info("El grafo es direccional");
             
             return true;
         }
        else
         {
-            log::info("El grafo no es direccional");
+            //log::info("El grafo no es direccional");
             
             return false;
         }
