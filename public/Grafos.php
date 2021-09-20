@@ -39,32 +39,7 @@
                 $matriz[$vertice_1[$i]][$vertice_2[$i]]++;
             }
         }
-        echo('<br/>');
-        print("Matriz de camino");
-        mostrar_matriz($matriz,$cantidad);
-        
-        if(matriz_conexa($matriz,$cantidad))
-        {
-            print("Es una matriz conexa");
-        }
-        else
-        {
-            print("No es una matriz conexa");
-        }
-        echo('<br/>');
-        if(euleriano($matriz,$cantidad,$isdireccional))
-        {
-            print("Es euleriano");
-            echo('<br/>');
-            print("Camino euleriano: ");
-            camino_euler($matriz,$cantidad);
-        }
-        else
-        {
-            print("No es eulerinano");
-
-        }
-        
+        return $matriz;
     }
 
     matriz_caminos(5,[0,0,1,2,2,3,4],[1,4,2,3,0,0,2],true);
@@ -85,11 +60,9 @@
                 $matriz[$vertice_2[$i]][$vertice_1[$i]]=$aristas[$i];
             }
         }
-        print("Matriz con valores de la arista");
-        mostrar_matriz($matriz,$cantidad);
-
+        return $matriz;
     }
-
+    
     function mostrar_matriz($matriz,$cantidad)
     {
         echo('<pre>');
@@ -120,8 +93,11 @@
     
     //print_r (conexiones(matriz_caminos(Cantidaddenodos(),Get_Vertice_A(),Get_Vertice_B(),Isdireccional()),Cantidaddenodos()));
     
-    function matriz_conexa($matriz,$cantidad)                           //Muestra si una matriz es conexa NO TOCAR POR NADA DEL MUNDO
+    function matriz_conexa()                           //Muestra si una matriz es conexa NO TOCAR POR NADA DEL MUNDO
     {
+        $matriz=matriz_caminos();
+        $cantidad=Cantidaddenodos();
+
         for($i=0;$i<$cantidad;$i++)
         {
             $contador=0;
@@ -291,8 +267,11 @@
         return $conexiones;
     }
 
-    function euleriano($matriz,$cantidad,$isdireccional)
+    function euleriano()
     {
+        $matriz=matriz_caminos();
+        $cantidad=Cantidaddenodos();
+        $isdireccional=Isdireccional();
         $contador=0;
 
         if(matriz_conexa($matriz,$cantidad))
@@ -349,8 +328,10 @@
         return $conexiones;
     }
 
-    function camino_euler($matriz,$cantidad)
+    function camino_euler()
     {
+        $matriz=matriz_caminos();
+        $cantidad=Cantidaddenodos();
         $euler=array();
         $verificador=0;
         $i=0;   //recorrer matriz
@@ -393,8 +374,10 @@
         }
     }
 
-    function hamiltoniano($matriz,$cantidad)
+    function hamiltoniano()
     {
+        $matriz=matriz_caminos();
+        $cantidad=Cantidaddenodos();
         $hamilton=array();
         $contador=0;
         $i=0;
