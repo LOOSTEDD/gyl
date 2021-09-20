@@ -218,9 +218,9 @@
 										hamiltoniano();
 									?>
 							</li>
-							<li>
+							<!--<li>
 
-							</li>
+							</li>-->
 								
 						</ul>
 						<form action="resultados2.php" mclass="#fh5co-started" method="POST">
