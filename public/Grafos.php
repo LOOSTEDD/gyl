@@ -19,8 +19,12 @@
 
     }
 
-    function matriz_caminos($cantidad,$vertice_1,$vertice_2,$isdireccional)
+    function matriz_caminos()
     {
+        $cantidad=Cantidaddenodos();
+        $vertice_1=Get_Vertice_A();
+        $vertice_2=Get_Vertice_B();
+        $isdireccional=Isdireccional();
         $matriz=crearmatriz($cantidad);
 
         for($i=0;$i<count($vertice_1);$i++)
@@ -63,14 +67,14 @@
         
     }
 
-<<<<<<< HEAD
     matriz_caminos(5,[0,0,1,2,2,3,4],[1,4,2,3,0,0,2],true);
-=======
-    // matriz_caminos(5,[0,1,1],[2,4,3],false); MATRIZ PRUEBA
->>>>>>> 963c7dfe40937b69198df9350bd3752a7f8aa113
 
-    function matriz_valoresA($cantidad,$vertice_1,$vertice_2,$aristas)
+    function matriz_valoresA()
     {
+        $cantidad=Cantidaddenodos();
+        $vertice_1=Get_Vertice_A();
+        $vertice_2=Get_Vertice_B();
+        $aristas=Get_Peso();
         $matriz = crearmatriz($cantidad);
         //print(count($vertice_1));
         for($i=0;$i<count($vertice_1);$i++)
@@ -386,6 +390,22 @@
             if($i>0)
             print(", ");
             print($euler[$i]);
+        }
+    }
+
+    function hamiltoniano($matriz,$cantidad)
+    {
+        $hamilton=array();
+        $contador=0;
+        $i=0;
+        while($contador!=$cantidad)
+        {
+            $conexiones=buscar_conexion($matriz,$i,$cantidad);
+            if(!in_array($i,$hamilton))
+            {
+                array_push($hamilton,$i);
+            }
+
         }
     }
     
