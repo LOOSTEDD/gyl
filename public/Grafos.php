@@ -448,15 +448,14 @@
                  
                 $camino = $camino.",".$B;
                 
-                $optimo["camino"]= $camino;
-                $optimo["valor"] = $distancia[$B];
+                $optimo[0]= $camino;
+                $optimo[1] = $distancia[$B];
                 return $optimo;
         }
     
         else
         {
-            echo "No se ha encontrado camino";
-            return 0;
+            return false;
         }
     }
 
@@ -542,5 +541,4 @@
         }
     }
 
-    print_r(caminos());
 ?>

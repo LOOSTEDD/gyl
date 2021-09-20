@@ -6,6 +6,12 @@
     fwrite($guardar,$nodo1);
     fwrite($guardar,',');
 	fwrite($guardar,$nodo2);
+    fwrite($guardar,"\n");
+    $nodo3=$_POST['nodo3'];
+    $nodo4=$_POST['nodo4'];
+    fwrite($guardar,$nodo3);
+    fwrite($guardar,',');
+	fwrite($guardar,$nodo4);
     fclose($guardar);
 ?>
 <!DOCTYPE HTML>
@@ -226,11 +232,24 @@
 									?>
 							</li>
 							<li>
-
+                                    <?php
+                                        $cam=caminos();
+                                        if($cam)
+                                        {
+                                            print_r('Su camino optimo es: ');
+                                            print_r($cam[0]);
+                                            print_r("\n");
+                                            echo '<li/>';
+                                            print_r('Su distancia total es: ');
+                                            print_r($cam[1]);
+                                        }
+                                        else
+                                            print_r('No existe camino');
+                                    ?>
 							</li>
 								
 						</ul>
-
+                        <a href="trabajo1.php"><input type="button" value="Mostrar resultados"></a>
                     </p>
 				<div>
 			</div>
@@ -238,7 +257,7 @@
 	</div>
 
 	<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up22"></i></a>
+		<a href="#" class="js-gotop"><em class="icon-arrow-up22"></em></a>
 	</div>
 	
 	<!-- jQuery -->
