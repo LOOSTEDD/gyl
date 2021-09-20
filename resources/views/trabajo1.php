@@ -1,3 +1,10 @@
+<?php
+	fopen('matriz.txt','a+');
+	$guardar=fopen('indicaciones.txt','a+');
+	unlink('indicaciones.txt');
+	unlink('matriz.txt');
+?>
+
 <!DOCTYPE HTML>
 <html>
 	<head>

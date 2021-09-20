@@ -1,5 +1,5 @@
 <?php
-    require("grafos.php")
+	require("grafos.php")
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -167,7 +167,54 @@
 				<div class="col-md-6 col-md-offset-3 text-center heading-section">
 					<h3>Resultados</h3>
                     <p> 
-                      
+						<ul align = "justify">
+							<li> Matriz camino: </li>
+						</ul>
+						<?php 
+							$matriz_c= matriz_caminos();
+							mostrar_matriz($matriz_c);
+						?>
+						<ul align = "justify">
+							<li>
+							<?php 
+								$conex=matriz_conexa();
+								if($conex==true)
+								{
+									print_r('Su matriz es conexa.');
+								}
+								else
+								{
+									print_r('Su matriz no es conexa.');
+								}
+							?>
+							</li>
+							<li>Matriz valores:</li>
+						</ul>
+						<?php 
+								$matriz_a=matriz_valoresA();
+								mostrar_matriz($matriz_a);
+						?>
+						<ul align = "justify">
+							<li>
+								<?php
+									$eu=euleriano();
+									if($eu == true)
+									{
+										print_r('Su matriz es euleriana.');
+										print_r("\n");
+										echo '<li/>';
+										print_r('Su camino euleriano es: ');
+										camino_euler();
+										print_r('.');
+									}
+									else
+									{
+										print_r('Su matriz no es euleriana.');
+									}
+								?>
+							</li>
+
+						</ul>
                     </p>
 				<div>
 			</div>
