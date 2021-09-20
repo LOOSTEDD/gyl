@@ -463,16 +463,20 @@
                  
                 $camino = $camino.",".$B;
                 
-                $optimo["camino"]= $camino;
-                $optimo["valor"] = $distancia[$B];
+                $optimo[0]= $camino;
+                $optimo[1] = $distancia[$B];
                 return $optimo;
         }
     
         else
         {
+<<<<<<< HEAD
             log::info("No se ha encontrado un camino optimo");
             log::error("error en el camino mas optimo");
             return 0;
+=======
+            return false;
+>>>>>>> 338dd8aff1791d50ed6c349c5dbac43e2ef185e5
         }
     }
 

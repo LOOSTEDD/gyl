@@ -181,7 +181,7 @@
 			</div>
 
 	<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up22"></i></a>
+		<a href="#" class="js-gotop"><em class="icon-arrow-up22"></em></a>
 	</div>
 	
 	<!-- jQuery -->
