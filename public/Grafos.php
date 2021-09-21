@@ -545,62 +545,79 @@
         $vertice_2 = array();
         $contador=0;
         $aux=array();
-        
         do 
         {
             $camino=caminos_r($A,$B,$matriz,$matrizV,$cantidad);
             $string=$camino[0];
             $restar=$camino[1];
-            if(!$camino)
+            if(!$camino || !empty($camino))
             {
-                for($i=0;$i<count($string);$i++)
+                for($i=0;$i<iconv_strlen($string);$i++)
                 {
-                    if($string!=",")
+                    if($string[$i]!=",")
+                    {
                         array_push($aux,$string[$i]);
-                    elseif($string=="," && $i==0)
+                    }
+                    elseif($string[$i]=="," && empty($vertices_1))
                     {
                         $num=0;
-                        for($j=0;$j<$aux;$j++)
+                        for($j=0;$j<count($aux);$j++)
                         {
                             $num = $num*10 + intval($aux[$j]);
                         }
                         array_push($vertices_1,$num);
+                        for($j=0;$j<count($aux);$j++)
+                        {
+                            array_pop($aux);
+                        }
                     }
-                    elseif($string=="," && ($i!=0 && $i<count($string)-1))
+                    elseif($string[$i]=="," && ($i>0 && $i<iconv_strlen($string)-1))
                     {
                         $num=0;
-                        for($j=0;$j<$aux;$j++)
+                        for($j=0;$j<count($aux);$j++)
                         {
                             $num = $num*10 + intval($aux[$j]);
                         }
                         array_push($vertices_1,$num);
                         array_push($vertice_2,$num);
+                        for($j=0;$j<count($aux);$j++)
+                        {
+                            array_pop($aux);
+                        }
                     }
-                    elseif($string=="," && $i==count($string)-1)
+                    if($i==iconv_strlen($string)-1)
                     {
                         $num=0;
-                        for($j=0;$j<$aux;$j++)
+                        for($j=0;$j<count($aux);$j++)
                         {
                             $num = $num*10 + intval($aux[$j]);
                         }
+
                         array_push($vertice_2,$num);
+
+                        for($j=0;$j<count($aux);$j++)
+                        {
+                            array_pop($aux);
+                        }
                     }
                 }
                 for($j=0;$j<count($vertices_1);$j++)
                 {
-                    $matriz[$vertices_1[$j]][$vertice_2[$j]]=$matriz[$vertices_1[$j]][$vertice_2[$j]]-intval($restar);
-                    $contador=$contador+intval($restar);
+                    $matriz[$vertices_1[$j]][$vertice_2[$j]] = $matriz[$vertices_1[$j]][$vertice_2[$j]]-$restar;
                 }
+                $contador= $contador + intval($restar);
             }
-            else
+            elseif(!$camino && $contador==0)
             {
                 print("No existe camino entre los nodos que ingreso");
             }
-
         }while(!$camino);
 
-        print("El flujo maximo entre los nodos ingresados es: ");
-        print($contador);
+        if($contador!=0)
+        {
+            print("El flujo maximo entre los nodos ingresados es: ");
+            print($contador);
+        }
     }
 
     function caminos_r($A,$B,$matriz,$matrizV,$cantidad)
@@ -674,5 +691,5 @@
             return false;
         }
     }
-    hamiltoniano();
+    //flujo_maximo();
 ?>

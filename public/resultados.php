@@ -1,5 +1,5 @@
 <?php
-	require("grafos.php")
+	require("grafos.php");
 ?>
 <!DOCTYPE HTML>
 <html lang="es">

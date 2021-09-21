@@ -1,4 +1,5 @@
 <?php
+$guardar=fopen('nodos.txt','a+');
  if(sizeof($_POST)==1)
  {
 	$direccional='';

@@ -235,9 +235,14 @@
                                             print_r('No existe camino');
                                     ?>
 							</li>
+							<li>
+								<?php
+									flujo_maximo();
+								?>
+							</li>
 								
 						</ul>
-                        <a href="trabajo1.php"><input type="button" value="Mostrar resultados"></a>
+                        <a href="trabajo1.php"><input type="button" value="Ir a trabajo 1"></a>
                     </p>
 				<div>
 			</div>

@@ -1,2 +1,2 @@
 Direccional: 
-Nodos: 5
+Nodos: 3
