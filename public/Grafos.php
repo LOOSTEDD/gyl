@@ -434,13 +434,8 @@
         }
         else
         {
-<<<<<<< HEAD
-            log::info("No se ha encontrado un camino optimo");
-            log::error("error en el camino mas optimo");
-=======
             //log::info("No se ha encontrado un camino optimo");
             //log::error("error en el camino mas optimo");
->>>>>>> d3331f651af0571edc12baec20d7772cbec25fdb
             return 0;
         }
     }
@@ -456,10 +451,6 @@
         $aux=array();
         while($contador<$cantidad+1)
         {
-<<<<<<< HEAD
-            
-=======
->>>>>>> d3331f651af0571edc12baec20d7772cbec25fdb
             $conexiones=buscar_conexion($matriz,$i,$cantidad);
             if($j>=count($conexiones) && $i==0)
             {
@@ -520,19 +511,11 @@
         }
         if(!empty($hamilton))
         {
-<<<<<<< HEAD
-            print("Su grafo es hamiltoniano. ");
-            log::info("Grafo es hamiltoniano");
-            echo '<br/>';
-            echo '<li/>';
-            print("Su camino hamiltoniano es: ");
-            for($i=0;$i<count($hamilton);$i++)
-=======
             if($hamilton[0]==$hamilton[$cantidad])
             {
                 print("Su grafo es hamiltoniano. ");
                 //log::info("Grafo es hamiltoniano");
-                echo ('<br/>');
+                echo '<br/>';
                 echo '<li/>';
                 print("Su camino hamiltoniano es: ");
                 for($i=0;$i<count($hamilton);$i++)
@@ -660,7 +643,6 @@
             $sucesores = buscar_conexion($matriz,$menor,$cantidad);
             
             for($i=0;$i<sizeof($sucesores);$i++)
->>>>>>> d3331f651af0571edc12baec20d7772cbec25fdb
             {
                 if($distancia[$sucesores[$i]]>$distancia[$menor]) 
                 {
@@ -692,4 +674,5 @@
             return false;
         }
     }
+    hamiltoniano();
 ?>
