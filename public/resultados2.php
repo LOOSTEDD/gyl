@@ -242,7 +242,7 @@
 							</li>
 								
 						</ul>
-                        <a href="trabajo1.php"><input type="button" value="Ir a trabajo 1"></a>
+                        <a href="trabajo1"><input type="button" value="Ir a trabajo 1"></a>
                     </p>
 				<div>
 			</div>

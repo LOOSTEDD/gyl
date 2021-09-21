@@ -22,6 +22,6 @@ Route::get('/index', function () {
     return view('index');
 });
 
-Route::get('/trabajo1', function (){
+Route::get('/trabajo1.php', function (){
     return view('trabajo1');
 });
